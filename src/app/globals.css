@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ep-bg: #FFFDF7; /* Soft cream base */
+  --color-ep-bg-alt: #E1F0F5; /* Sky blue alt background */
+  --color-ep-accent: #E8632C; /* Burnt orange */
+  --color-ep-accent-hover: #F2884D;
+  --color-ep-black: #4A3728; /* Rich walnut brown */
+  --color-ep-white: #FFFFFF;
+  --color-ep-gray: #8C7A6B; /* Soft warm gray/brown */
+  --color-ep-lightgray: #F0EBE1; /* Warm beige borders */
+  --color-ep-primary: #527A9B; /* A muted confident blue for variety */
+
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: var(--font-nunito), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-ep-bg text-ep-black font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+

@@ -1,48 +1,36 @@
-# EnPassant Chess Forum
-
-The official frontend for the EnPassant Chess Forum (ABESEC's Chess Club).
-
-This is a modern, design-driven frontend built with a custom scroll-jacking engine, heavy editorial typography, and high-fidelity aesthetics.
-
-## Tech Stack
-
-- **Framework**: [Next.js](https://nextjs.org/) (App Router)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
-- **Icons**: Custom inline SVGs (no external UI/icon libraries)
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-Follow these steps to run the development server locally:
-
-### 1. Install Dependencies
-
-Ensure you have Node.js installed on your machine. Then, run the following command in the root directory:
-
-```bash
-npm install
-```
-
-### 2. Start the Development Server
-
-Start the Next.js development server:
+First, run the development server:
 
 ```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### 3. Open the App
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Project Structure
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-- **`/app`**: Next.js App Router entry point, layout, and global CSS.
-- **`/components`**: Global shared UI components (e.g. `ScrollStage`, `ProgressIndicator`, `AuthModal`).
-- **`/components/panels`**: The individual horizontal scrolling panels (Home, Community, ACC, Events, Leads, Alumni).
-- **`/public`**: Static assets, including the high-resolution imagery used in the cards and backdrop.
-- **`/lib`**: Context providers (like `AuthContext`) and validation schemas (like Zod schemas).
+## Learn More
 
-## Notes
-- **Images**: The project uses unoptimized raw files via the `unoptimized` flag on `next/image` to prevent Next.js from bottlenecking during local development, as the assets are intentionally high-res.
-- **Styling**: Uses standard Tailwind CSS v4 utility classes. Most foundational styles and CSS variables are found in `app/globals.css`.
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
