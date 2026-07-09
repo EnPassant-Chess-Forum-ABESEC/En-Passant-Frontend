@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react';
 
 export default function LayeredHero() {
-  const containerRef = useRef(null);
   const gridRef = useRef(null);
   
   useEffect(() => {
@@ -30,7 +29,6 @@ export default function LayeredHero() {
 
   return (
     <section 
-      ref={containerRef}
       className="relative w-full h-[100svh] min-h-[500px] md:min-h-[700px] overflow-hidden bg-ep-bg flex items-center justify-center border-b border-ep-border"
     >
       {/* Static Background Grid */}
