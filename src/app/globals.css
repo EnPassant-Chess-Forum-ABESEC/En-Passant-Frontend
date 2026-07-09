@@ -1,28 +1,123 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ep-bg: #FFFDF7; /* Soft cream base */
-  --color-ep-bg-alt: #E1F0F5; /* Sky blue alt background */
-  --color-ep-accent: #E8632C; /* Burnt orange */
-  --color-ep-accent-hover: #F2884D;
-  --color-ep-black: #4A3728; /* Rich walnut brown */
-  --color-ep-white: #FFFFFF;
-  --color-ep-gray: #8C7A6B; /* Soft warm gray/brown */
-  --color-ep-lightgray: #F0EBE1; /* Warm beige borders */
-  --color-ep-primary: #527A9B; /* A muted confident blue for variety */
+  --color-ep-bg: #080808; /* Base background */
+  --color-ep-bg-deep: #0B0B0B; /* Deep section */
+  --color-ep-bg-raised: #101010; /* Raised surface */
+  --color-ep-bg-highlight: #161616; /* Highlighted dark surface */
+  --color-ep-accent: #E8E5DC; /* Warm light surface */
+  --color-ep-accent-hover: #FFFFFF;
+  --color-ep-black: #F1EFE8; /* Primary text (inverted naming for legacy compatibility) */
+  --color-ep-white: #0A0A0A; /* Dark contrast text */
+  --color-ep-gray: #A5A39C; /* Secondary text */
+  --color-ep-lightgray: rgba(241,239,232,0.12);
+  --color-ep-primary: #6F6D67; /* Muted text */
+  --color-ep-border: rgba(241,239,232,0.08); /* Borders */
 
-  --font-serif: var(--font-fraunces), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: var(--font-nunito), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --font-serif: var(--font-courier), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-mono: var(--font-courier), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: var(--font-courier), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 @layer base {
   body {
-    @apply bg-ep-bg text-ep-black font-sans antialiased;
+    @apply bg-[#0A0A0A] text-[#F2F2EE] font-mono;
+    /* Custom scrollbar for terminal feel */
+    scrollbar-width: thin;
+    scrollbar-color: #333 #0A0A0A;
+  }
+
+  body::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: #0A0A0A;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 0;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+    @apply font-mono font-normal uppercase tracking-widest;
   }
 }
 
+@layer utilities {
+  /* Chess Inversion Utilities */
+  .chess-cell-dark {
+    @apply bg-ep-bg-raised text-ep-accent border border-[rgba(232,229,220,0.1)] transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ep-accent cursor-pointer;
+  }
+  .chess-cell-dark:hover, .chess-cell-dark:focus-visible {
+    @apply bg-ep-accent text-[#090909] border-ep-accent;
+  }
+  
+  /* Handle nested text for dark cell */
+  .chess-cell-dark .cell-text-primary {
+    @apply text-ep-black transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
+  }
+  .chess-cell-dark:hover .cell-text-primary, .chess-cell-dark:focus-visible .cell-text-primary {
+    @apply text-[#090909];
+  }
+  
+  .chess-cell-dark .cell-text-secondary {
+    @apply text-ep-gray transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
+  }
+  .chess-cell-dark:hover .cell-text-secondary, .chess-cell-dark:focus-visible .cell-text-secondary {
+    @apply text-[#444444];
+  }
+  
+  .chess-cell-dark .cell-border {
+    @apply border-ep-border transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
+  }
+  .chess-cell-dark:hover .cell-border, .chess-cell-dark:focus-visible .cell-border {
+    @apply border-[#090909]/20;
+  }
+  
+  .chess-cell-light {
+    @apply bg-ep-accent text-[#090909] border border-ep-accent transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ep-bg cursor-pointer;
+  }
+  .chess-cell-light:hover, .chess-cell-light:focus-visible {
+    @apply bg-[#090909] text-ep-accent border-[#090909];
+  }
+  
+  /* Handle nested text for light cell */
+  .chess-cell-light .cell-text-primary {
+    @apply text-[#090909] transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
+  }
+  .chess-cell-light:hover .cell-text-primary, .chess-cell-light:focus-visible .cell-text-primary {
+    @apply text-ep-accent;
+  }
+  
+  .chess-cell-light .cell-text-secondary {
+    @apply text-[#444444] transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
+  }
+  .chess-cell-light:hover .cell-text-secondary, .chess-cell-light:focus-visible .cell-text-secondary {
+    @apply text-ep-gray;
+  }
+  
+  .chess-cell-light .cell-border {
+    @apply border-[#090909]/20 transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
+  }
+  .chess-cell-light:hover .cell-border, .chess-cell-light:focus-visible .cell-border {
+    @apply border-ep-accent/20;
+  }
+
+  /* Coordinate Marker */
+  .coord-marker {
+    @apply opacity-0 transition-opacity duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] font-mono text-[10px] tracking-widest absolute bottom-4 right-4 pointer-events-none;
+  }
+  .chess-cell-dark .coord-marker {
+    @apply text-[#090909]; /* Will be visible when parent is light */
+  }
+  .chess-cell-light .coord-marker {
+    @apply text-ep-accent; /* Will be visible when parent is dark */
+  }
+  .chess-cell-dark:hover .coord-marker, .chess-cell-dark:focus-visible .coord-marker,
+  .chess-cell-light:hover .coord-marker, .chess-cell-light:focus-visible .coord-marker {
+    @apply opacity-100;
+  }
+}

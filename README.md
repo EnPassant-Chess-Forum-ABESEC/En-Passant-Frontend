@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EnPassant Chess Forum
+
+The official chess forum and community of ABESEC.
+
+## Overview
+
+EnPassant is a rigorous intellectual platform built for the ABESEC community. It serves as a central hub for students and chess enthusiasts to engage in tournaments, analyze games, and connect over the complexity of the board. The platform is designed to facilitate competitive play and collaborative improvement among forum members.
+
+## Features
+
+- **Activities & Events**: Information on tournaments, coaching, casual play, and puzzle solving.
+- **Player Ratings**: Track online ratings across the forum.
+- **Game Analysis**: Collaborative breakdowns of grandmaster and forum games.
+- **Community Birthdays**: Upcoming member birthdays and chess legend anniversaries.
+- **Authentication**: Custom login and signup flows to join the forum.
+- **Social & Contact**: Direct integrations with WhatsApp, Discord, Instagram, and Chess.com.
+
+## Design
+
+The forum features a premium monochrome editorial interface with Courier Prime typography. Navigation and interaction are driven by a chessboard-inspired black/white inversion system—where interactive content panels seamlessly invert states on hover, evoking the tactical nature of the game.
+
+## Tech Stack
+
+- HTML
+- CSS
+- Vanilla JavaScript
+- Tailwind CSS
+
+## Project Structure
+
+- `src/app/` - Core routing, global styles, and the main page structure.
+- `src/components/` - Reusable UI components (Hero, Auth, Logo, OnThisDay).
+- `src/context/` - Global state management (AuthContext).
+- `src/lib/` - Mock data and utility functions.
 
 ## Getting Started
 
-First, run the development server:
+To run the development server locally:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contact / Community
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Instagram](https://www.instagram.com/enpassant.abesec/)
+- [WhatsApp](https://chat.whatsapp.com/IoiMk9ru9CpEew7dHJkHve)
+- [Discord](https://discord.com/invite/Edtgnxnc37)
+- [Chess.com](https://www.chess.com/club/en-passant-abesec)

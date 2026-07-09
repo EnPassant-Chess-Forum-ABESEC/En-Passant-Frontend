@@ -5,93 +5,92 @@ import LayeredHero from '../components/LayeredHero';
 
 export default function Home() {
   return (
-    <main className="min-h-screen relative">
+    <main className="min-h-screen relative border-x border-ep-border max-w-[1600px] mx-auto bg-ep-bg">
       <Logo />
       
-      {/* ═══════════════════════════════════════════════════════════════
-          1. HERO / WELCOME — New Layered Depth Illustration System
-          ═══════════════════════════════════════════════════════════════ */}
       <LayeredHero />
 
-      {/* ═══════════════════════════════════════════════════════════════
-          2. ON THIS DAY — warm-gray chapter break
-          ═══════════════════════════════════════════════════════════════ */}
       <OnThisDay />
 
       {/* ═══════════════════════════════════════════════════════════════
-          3. ACTIVITIES — Soft colorful cards, friendly layout
+          ACTIVITIES
           ═══════════════════════════════════════════════════════════════ */}
-      <section className="px-6 md:px-12 lg:px-24 pt-24 pb-32 max-w-7xl mx-auto">
-        <div className="mb-16 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+      <section id="community" className="px-6 md:px-12 lg:px-24 pt-24 pb-32 border-b border-ep-border relative bg-ep-bg-raised">
+        <div className="relative z-10 mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8 border-l border-ep-border pl-6 md:pl-12">
           <div>
-            <span className="inline-block px-3 py-1 rounded-full bg-ep-accent/10 text-ep-accent font-sans font-bold text-xs tracking-wide mb-4">
-              Activities
+            <span className="font-mono text-xs text-ep-gray tracking-[0.2em] uppercase mb-4 block">
+              01 // The Proving Grounds
             </span>
-            <h2 className="text-4xl md:text-5xl font-serif text-ep-black">The Proving Grounds</h2>
+            <h2 className="text-4xl md:text-5xl font-mono text-ep-black uppercase tracking-tight">Activities</h2>
           </div>
-          <p className="font-sans text-base text-ep-gray max-w-xs md:text-right">
+          <p className="font-mono text-sm text-ep-gray max-w-xs md:text-right uppercase tracking-wider">
             Where theory hits the board. Here's what keeps the forum running week to week.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-ep-border border border-ep-border shadow-xl">
           {[
             { 
               title: "Tournaments", 
               desc: "Online brackets every other week, plus occasional over-the-board showdowns.", 
               tag: "Biweekly / Online", 
-              icon: "M5 16h14l1-9-4 2-4-5-4 5-4-2 1 9zm0 2h14v2H5v-2z",
+              notation: "T.01",
+              coord: "A1",
               featured: true
             },
             { 
               title: "Coaching", 
               desc: "No formal coaches — just stronger players passing down what they know.", 
               tag: "Ongoing", 
-              icon: "M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" 
+              notation: "C.02",
+              coord: "B2" 
             },
             { 
               title: "Casual Play", 
               desc: "Drop into a game on campus or online — no stakes, just chess.", 
               tag: "Anytime", 
-              icon: "M12 2a3 3 0 0 0-3 3c0 1.1.6 2.05 1.5 2.6L9 11v1h6v-1l-1.5-3.4c.9-.55 1.5-1.5 1.5-2.6a3 3 0 0 0-3-3zM8 14v2h8v-2H8zm-1 4v2h10v-2H7z" 
+              notation: "P.03",
+              coord: "C3" 
             },
             { 
               title: "Puzzles", 
               desc: "Daily puzzles, puzzle rush duels, and position breakdowns.", 
               tag: "Daily-ish", 
-              icon: "M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7 1.49 0 2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z" 
+              notation: "Z.04",
+              coord: "D4" 
             },
             { 
               title: "Ratings", 
               desc: "Track your Chess.com and Lichess ratings against the rest of the forum.", 
               tag: "Live", 
-              icon: "M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" 
+              notation: "R.05",
+              coord: "E5" 
             },
             { 
               title: "Analysis", 
               desc: "We break down our own games together — the good, the bad, the blunders.", 
               tag: "Ongoing", 
-              icon: "M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" 
+              notation: "A.06",
+              coord: "F6" 
             }
           ].map((activity, i) => (
             <div 
               key={i} 
-              className={`group flex flex-col rounded-[2rem] p-8 transition-transform hover:-translate-y-1 cursor-pointer ${
+              className={`group flex flex-col p-8 md:p-12 relative ${
                 activity.featured 
-                  ? 'md:col-span-2 lg:col-span-1 lg:row-span-2 bg-ep-primary text-ep-white shadow-lg' 
-                  : 'bg-ep-white border border-ep-lightgray shadow-sm hover:shadow-md'
+                  ? 'md:col-span-2 lg:col-span-1 lg:row-span-2 chess-cell-light' 
+                  : 'chess-cell-dark'
               }`}
             >
-              <div className="flex-1">
-                <div className={`mb-6 flex items-center justify-center w-12 h-12 rounded-full ${activity.featured ? 'bg-ep-white/20' : 'bg-ep-bg-alt text-ep-primary'}`}>
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                    <path d={activity.icon} />
-                  </svg>
-                </div>
-                <h4 className={`font-serif mb-2 ${activity.featured ? 'text-3xl' : 'text-xl'}`}>{activity.title}</h4>
-                <p className={`font-sans font-bold text-[11px] uppercase tracking-wider mb-4 ${activity.featured ? 'text-ep-white/80' : 'text-ep-accent'}`}>{activity.tag}</p>
+              <div className="absolute top-6 right-6 font-mono text-[10px] tracking-widest cell-text-secondary">
+                [{activity.notation}]
               </div>
-              <p className={`font-sans text-sm leading-relaxed ${activity.featured ? 'text-ep-white/90' : 'text-ep-gray'}`}>
+              <div className="coord-marker">[{activity.coord}]</div>
+              <div className="flex-1 mt-8">
+                <h4 className={`font-mono uppercase tracking-widest mb-2 cell-text-primary ${activity.featured ? 'text-2xl' : 'text-lg'}`}>{activity.title}</h4>
+                <p className="font-mono text-[10px] uppercase tracking-widest mb-6 border-b pb-4 inline-block cell-text-secondary cell-border">{activity.tag}</p>
+              </div>
+              <p className={`font-mono text-sm leading-relaxed uppercase tracking-wide cell-text-secondary ${activity.featured ? 'mt-4' : ''}`}>
                 {activity.desc}
               </p>
             </div>
@@ -99,80 +98,97 @@ export default function Home() {
         </div>
       </section>
 
-      {/* thin editorial rule between Activities and About */}
-      <div className="max-w-xs mx-auto">
-        <hr className="border-ep-lightgray" />
-      </div>
-
       {/* ═══════════════════════════════════════════════════════════════
-          4. ABOUT — Warm rounded card, friendly prose
+          ABOUT
           ═══════════════════════════════════════════════════════════════ */}
-      <section className="px-6 md:px-12 lg:px-24 py-20 md:py-32 relative">
-        <div className="max-w-5xl mx-auto bg-ep-white rounded-[3rem] p-8 md:p-16 lg:p-24 shadow-sm border border-ep-lightgray relative overflow-hidden">
-          <div className="relative z-10 grid md:grid-cols-2 gap-16 items-center">
+      <section className="px-6 md:px-12 lg:px-24 py-24 md:py-32 relative border-b border-ep-border bg-ep-bg overflow-hidden">
+        {/* Subtle 8x8 micro-grid decorative motif in corner */}
+        <div className="absolute top-12 right-12 opacity-10 pointer-events-none grid grid-cols-8 grid-rows-8 w-64 h-64 border border-ep-border">
+          {Array.from({length: 64}).map((_, i) => (
+            <div key={i} className={`border border-ep-border/30 ${i % 2 === 0 ? 'bg-ep-white' : 'bg-transparent'} ${(i === 27 || i === 36) ? '!bg-ep-white !opacity-100' : ''}`} />
+          ))}
+        </div>
+
+        <div className="max-w-5xl mx-auto relative z-10 grid md:grid-cols-12 gap-12 md:gap-8">
+          
+          <div className="md:col-span-5 flex flex-col justify-between">
             <div>
-              <span className="inline-block px-3 py-1 rounded-full bg-ep-primary/10 text-ep-primary font-sans font-bold text-xs tracking-wide mb-6">
-                About
+              <span className="font-mono text-xs text-ep-gray tracking-[0.2em] uppercase mb-4 block">
+                02 // Foundation
               </span>
-              <h2 className="text-4xl md:text-5xl font-serif tracking-tight text-ep-black mb-8">Founded on the 64 Squares</h2>
-              
-              <blockquote className="border-l-4 border-ep-accent pl-6 mb-8">
-                <p className="font-serif text-2xl text-ep-black/90 italic leading-snug">
+              <h2 className="text-4xl md:text-5xl font-mono uppercase tracking-tight text-ep-black mb-8">Founded on the 64 Squares</h2>
+            </div>
+            
+            <div className="hidden md:flex border-l border-ep-border pl-6 py-2 flex-col gap-2">
+              <span className="font-mono text-[10px] text-ep-primary tracking-widest">[ COORD: E4-C5 ]</span>
+              <span className="font-mono text-[10px] text-ep-primary tracking-widest">EST. [DATA]</span>
+            </div>
+          </div>
+
+          <div className="md:col-span-7 space-y-12">
+            <div className="chess-cell-dark p-8 md:p-12 relative group">
+              <div className="coord-marker">[G7]</div>
+              <blockquote className="border-l border-ep-white pl-6 md:pl-10 cell-border">
+                <p className="font-mono text-xl md:text-2xl cell-text-primary uppercase tracking-wide leading-relaxed">
                   "We play for glory, we analyze for truth, and we build community through every checkmate."
                 </p>
               </blockquote>
             </div>
 
-            <div className="space-y-6">
-              <p className="font-sans text-base leading-relaxed text-ep-gray">
+            <div className="space-y-6 text-ep-gray font-mono text-sm leading-relaxed uppercase tracking-wider pl-4 border-l border-ep-border/50">
+              <p>
                 EnPassant was forged at ABESEC for those who understand that chess is more than a pastime—it is a rigorous discipline of the mind. We started as a handful of students analyzing grandmaster games in empty lecture halls, and have grown into the premier intellectual battleground on campus.
               </p>
-              <p className="font-sans text-base leading-relaxed text-ep-gray">
+              <p>
                 Whether you are here to memorize opening gambits, sharpen your endgame technique, or simply enjoy the immense complexity of the board, our forum stands open.
               </p>
             </div>
           </div>
+
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          5. CONTACT — Friendly CTA and footer
+          CONTACT
           ═══════════════════════════════════════════════════════════════ */}
-      <section className="px-6 md:px-12 lg:px-24 pt-20 pb-32 bg-ep-bg relative text-center">
-        <div className="max-w-3xl mx-auto">
-          <span className="inline-block px-3 py-1 rounded-full bg-ep-accent/10 text-ep-accent font-sans font-bold text-xs tracking-wide mb-6">
-            Connect
-          </span>
-          <h2 className="text-5xl md:text-6xl font-serif tracking-tight text-ep-black mb-8">Take Your Seat</h2>
-          <p className="font-sans text-lg text-ep-gray mb-16">
+      <section className="px-6 md:px-12 lg:px-24 pt-24 pb-32 bg-ep-accent text-ep-bg relative text-center">
+        <div className="max-w-4xl mx-auto border border-ep-bg/20 p-8 md:p-16 bg-[#F8F7F3] shadow-2xl relative">
+          <div className="absolute top-4 left-4 font-mono text-[10px] text-ep-bg/50 tracking-widest">[03]</div>
+          <div className="absolute top-4 right-4 font-mono text-[10px] text-ep-bg/50 tracking-widest">[ENDGAME]</div>
+          
+          <h2 className="text-5xl md:text-7xl font-mono uppercase tracking-tight text-ep-bg mb-6 mt-8">Take Your Seat</h2>
+          <p className="font-mono text-sm md:text-base text-ep-bg/70 mb-16 uppercase tracking-wider">
             Join the conversation. We're always looking for new challengers.
           </p>
           
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-16 border-y border-ep-lightgray py-12">
-            <div className="flex flex-col gap-2">
-              <span className="font-sans font-bold text-xs uppercase text-ep-primary tracking-wider">Email</span>
-              <a href="mailto:enpassantabesec@gmail.com" className="font-sans text-sm text-ep-black hover:text-ep-accent transition-colors break-words">enpassantabesec<br/>@gmail.com</a>
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-ep-bg/10 border border-ep-bg/10 mb-16 text-left shadow-sm">
+            <a href="https://www.instagram.com/enpassant.abesec/" target="_blank" rel="noopener noreferrer" className="p-6 flex flex-col gap-4 group chess-cell-light relative">
+              <div className="coord-marker">[H1]</div>
+              <span className="font-mono text-[10px] uppercase tracking-widest border-b pb-2 cell-text-secondary cell-border">Instagram</span>
+              <span className="font-mono text-[10px] uppercase tracking-wide flex items-center justify-between w-full cell-text-primary">@enpassant.abesec <span className="opacity-0 group-hover:opacity-100 transition-opacity">-&gt;</span></span>
+            </a>
             
-            <div className="flex flex-col gap-2">
-              <span className="font-sans font-bold text-xs uppercase text-ep-primary tracking-wider">WhatsApp</span>
-              <a href="https://chat.whatsapp.com/IoiMk9ru9CpEew7dHJkHve" target="_blank" rel="noopener noreferrer" className="font-sans text-sm text-ep-black hover:text-ep-accent transition-colors">Join Chat</a>
-            </div>
+            <a href="https://chat.whatsapp.com/IoiMk9ru9CpEew7dHJkHve" target="_blank" rel="noopener noreferrer" className="p-6 flex flex-col gap-4 group chess-cell-light relative">
+              <div className="coord-marker">[H2]</div>
+              <span className="font-mono text-[10px] uppercase tracking-widest border-b pb-2 cell-text-secondary cell-border">WhatsApp</span>
+              <span className="font-mono text-[10px] uppercase tracking-wide flex items-center justify-between w-full cell-text-primary">Join Chat <span className="opacity-0 group-hover:opacity-100 transition-opacity">-&gt;</span></span>
+            </a>
 
-            <div className="flex flex-col gap-2">
-              <span className="font-sans font-bold text-xs uppercase text-ep-primary tracking-wider">Discord</span>
-              <a href="https://discord.com/invite/Edtgnxnc37" target="_blank" rel="noopener noreferrer" className="font-sans text-sm text-ep-black hover:text-ep-accent transition-colors">Join Server</a>
-            </div>
+            <a href="https://discord.com/invite/Edtgnxnc37" target="_blank" rel="noopener noreferrer" className="p-6 flex flex-col gap-4 group chess-cell-light relative">
+              <div className="coord-marker">[H3]</div>
+              <span className="font-mono text-[10px] uppercase tracking-widest border-b pb-2 cell-text-secondary cell-border">Discord</span>
+              <span className="font-mono text-[10px] uppercase tracking-wide flex items-center justify-between w-full cell-text-primary">Join Server <span className="opacity-0 group-hover:opacity-100 transition-opacity">-&gt;</span></span>
+            </a>
 
-            <div className="flex flex-col gap-2">
-              <span className="font-sans font-bold text-xs uppercase text-ep-primary tracking-wider">Social</span>
-              <a href="https://www.instagram.com/enpassant.abesec/" target="_blank" rel="noopener noreferrer" className="font-sans text-sm text-ep-black hover:text-ep-accent transition-colors">@enpassant.abesec</a>
-              <a href="https://www.chess.com/club/en-passant-abesec" target="_blank" rel="noopener noreferrer" className="font-sans text-sm text-ep-black hover:text-ep-accent transition-colors mt-1">Chess.com Club</a>
-            </div>
+            <a href="https://www.chess.com/club/en-passant-abesec" target="_blank" rel="noopener noreferrer" className="p-6 flex flex-col gap-4 group chess-cell-light relative">
+              <div className="coord-marker">[H4]</div>
+              <span className="font-mono text-[10px] uppercase tracking-widest border-b pb-2 cell-text-secondary cell-border">Chess.com</span>
+              <span className="font-mono text-[10px] uppercase tracking-wide flex items-center justify-between w-full cell-text-primary">View Chess.com Page <span className="opacity-0 group-hover:opacity-100 transition-opacity">-&gt;</span></span>
+            </a>
           </div>
 
-          <button className="bg-ep-primary text-ep-white px-10 py-4 rounded-xl font-sans font-bold text-base hover:bg-ep-black transition-colors shadow-md hover:shadow-lg hover:-translate-y-1 transform">
-            Join the Club
+          <button className="px-12 py-4 font-mono text-xs tracking-widest uppercase shadow-[4px_4px_0_0_rgba(10,10,10,0.1)] chess-cell-dark">
+            <span className="cell-text-primary">JOIN THE FORUM</span>
           </button>
         </div>
       </section>

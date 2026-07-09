@@ -63,54 +63,59 @@ export default function OnThisDay() {
   // Avoid hydration mismatch by not rendering the dates until mounted
   if (!mounted) {
     return (
-      <section className="px-6 md:px-12 lg:px-24 py-28 md:py-32 bg-ep-bg-warm min-h-[500px]">
+      <section className="px-6 md:px-12 lg:px-24 py-28 md:py-32 bg-ep-bg border-b border-ep-border min-h-[500px]">
         {/* Placeholder to prevent layout shift */}
       </section>
     );
   }
 
   const formatMonth = (m) => {
-    const months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const months = ["", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
     return months[m];
   };
 
+  const padDay = (d) => String(d).padStart(2, '0');
+
   return (
-    <section className="px-6 md:px-12 lg:px-24 py-24 md:py-32 bg-ep-bg relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16 md:mb-24">
-          <span className="inline-block px-3 py-1 rounded-full bg-ep-accent/10 text-ep-accent font-sans font-bold text-xs tracking-wide mb-4">
-            On This Day
-          </span>
-          <h2 className="text-4xl md:text-5xl font-serif text-ep-black">Birthdays & Anniversaries</h2>
+    <section className="px-6 md:px-12 lg:px-24 py-24 md:py-32 bg-ep-bg border-b border-ep-border relative overflow-hidden">
+      <div className="max-w-6xl mx-auto relative z-10 grid md:grid-cols-12 gap-12 md:gap-8">
+        
+        <div className="md:col-span-4 flex flex-col justify-between border-r border-ep-border pr-8">
+          <div>
+            <span className="font-mono text-xs text-ep-gray tracking-[0.2em] uppercase mb-4 block">
+              [ CALENDAR ]
+            </span>
+            <h2 className="text-4xl md:text-5xl font-mono text-ep-black uppercase tracking-tight leading-tight">Birthdays &<br/>Anniversaries</h2>
+          </div>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-px bg-ep-border border border-ep-border">
           
           {/* Legends Column */}
-          <div className="bg-ep-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-ep-lightgray relative overflow-hidden group hover:shadow-md transition-shadow">
-            <h3 className="font-serif text-3xl text-ep-black mb-8 border-b border-ep-lightgray pb-4">
-              Chess Legends
+          <div className="bg-ep-bg flex flex-col group relative">
+            <h3 className="font-mono text-xs tracking-widest text-ep-gray uppercase p-6 border-b border-ep-border">
+              // Chess Legends
             </h3>
             
-            <div className="space-y-6">
+            <div className="flex-1 flex flex-col gap-px bg-ep-border">
             {thisWeekLegends.length === 0 ? (
-               <p className="font-sans text-sm text-ep-gray">No legends celebrate this week — check back soon.</p>
+               <div className="p-6 h-full flex items-center justify-center bg-ep-bg">
+                 <p className="font-mono text-xs text-ep-gray uppercase tracking-widest text-center">NO DATA // CHECK BACK SOON</p>
+               </div>
             ) : (
               thisWeekLegends.map((legend, i) => (
-                <div key={i} className="flex items-center gap-6 p-4 rounded-2xl hover:bg-ep-bg-alt transition-colors">
-                  <div className="w-16 h-16 rounded-2xl bg-ep-primary/10 text-ep-primary flex items-center justify-center flex-shrink-0">
-                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-                      <path d="M12 2L9 9H2l5.5 4.5L5.5 22 12 17l6.5 5-2-8.5L22 9h-7z"/>
-                    </svg>
+                <div key={i} className="p-6 relative chess-cell-dark flex-1">
+                  <div className="absolute right-6 top-6 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-xs cell-text-secondary">
+                    [{formatMonth(legend.month)}.{padDay(legend.day)}]
                   </div>
                   <div>
-                    <p className="font-serif text-2xl text-ep-black">
-                      {legend.isNextUp && <span className="font-sans font-bold text-[10px] uppercase tracking-wider text-ep-accent mr-2 bg-ep-accent/10 px-2 py-1 rounded-full">Next up</span>}
+                    <p className="font-mono text-lg uppercase tracking-wider mb-2 cell-text-primary">
+                      {legend.isNextUp && <span className="font-mono text-[10px] uppercase tracking-widest bg-ep-gray text-ep-bg px-2 py-0.5 mr-3 align-text-top">Next up</span>}
                       {legend.name}
                     </p>
-                    <p className="font-sans text-sm text-ep-gray mb-1">{legend.role}</p>
-                    <p className="font-sans text-sm font-bold text-ep-accent">
-                      Born {formatMonth(legend.month)} {legend.day}, {legend.year}
+                    <p className="font-mono text-xs uppercase tracking-widest mb-4 cell-text-secondary">role: {legend.role}</p>
+                    <p className="font-mono text-[10px] tracking-widest uppercase cell-text-secondary">
+                      DOB: {legend.year}.{formatMonth(legend.month)}.{padDay(legend.day)}
                     </p>
                   </div>
                 </div>
@@ -119,24 +124,26 @@ export default function OnThisDay() {
             </div>
           </div>
 
-          {/* Members Column */}
-          <div className="bg-ep-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-ep-lightgray relative overflow-hidden group hover:shadow-md transition-shadow">
-            <h3 className="font-serif text-3xl text-ep-black mb-8 border-b border-ep-lightgray pb-4">
-              Club Members
+          {/* Forum Members Column */}
+          <div className="bg-ep-bg flex flex-col group relative">
+            <h3 className="font-mono text-xs tracking-widest text-ep-gray uppercase p-6 border-b border-ep-border">
+              // Forum Members
             </h3>
             {thisWeekMembers.length === 0 ? (
-              <p className="font-sans text-sm text-ep-gray">No members celebrate this week — check back soon.</p>
+              <div className="flex-1 p-6 flex items-center justify-center bg-ep-bg">
+                <p className="font-mono text-xs text-ep-gray uppercase tracking-widest text-center">NO DATA // CHECK BACK SOON</p>
+              </div>
             ) : (
-              <div className="space-y-6">
+              <div className="flex-1 flex flex-col gap-px bg-ep-border">
               {thisWeekMembers.map((member, i) => (
-                <div key={i} className="flex items-center gap-6 p-4 rounded-2xl hover:bg-ep-bg-alt transition-colors">
-                  <div className="w-16 h-16 rounded-full bg-ep-bg border-2 border-ep-lightgray overflow-hidden flex-shrink-0">
-                    {member.avatarUrl && <img src={member.avatarUrl} alt={member.name} className="w-full h-full object-cover" />}
+                <div key={i} className="flex items-center gap-6 p-6 relative chess-cell-dark flex-1">
+                  <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all cell-border border">
+                    {member.avatarUrl ? <img src={member.avatarUrl} alt={member.name} className="w-full h-full object-cover" /> : <span className="font-mono text-xs cell-text-secondary">?</span>}
                   </div>
-                  <div>
-                    <p className="font-serif text-2xl text-ep-black">{member.name}</p>
-                    <p className="font-sans text-sm font-bold text-ep-accent">
-                      Turns 20 • {formatMonth(member.month)} {member.day}
+                  <div className="flex-1">
+                    <p className="font-mono text-lg uppercase tracking-wider mb-2 cell-text-primary">{member.name}</p>
+                    <p className="font-mono text-[10px] tracking-widest uppercase cell-text-secondary">
+                      TURNS 20 • [{formatMonth(member.month)}.{padDay(member.day)}]
                     </p>
                   </div>
                 </div>

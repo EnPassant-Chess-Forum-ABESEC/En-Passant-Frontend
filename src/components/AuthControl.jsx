@@ -11,49 +11,49 @@ export default function AuthControl() {
   if (!isClient) return null;
 
   return (
-    <div className="fixed top-6 right-6 z-40 flex items-center gap-3">
+    <div className="fixed top-8 right-8 md:top-12 md:right-12 z-40 flex items-center gap-3">
       {!user ? (
-        <div className="bg-ep-white/80 backdrop-blur-md px-2 py-2 rounded-full flex items-center gap-2 shadow-sm border border-ep-lightgray/50">
+        <div className="flex items-center gap-2 shadow-sm">
           <button 
             onClick={() => openModal('login')}
-            className="px-4 py-2 font-mono text-xs text-ep-gray hover:text-ep-black transition-colors"
+            className="px-6 py-3 font-mono text-[10px] tracking-widest uppercase chess-cell-dark"
           >
-            Log In
+            <span className="cell-text-primary">LOG IN</span>
           </button>
           <button 
             onClick={() => openModal('signup')}
-            className="bg-ep-black text-ep-white px-5 py-2 rounded-full font-mono text-xs hover:bg-ep-accent transition-colors shadow-sm"
+            className="px-6 py-3 font-mono text-[10px] tracking-widest uppercase chess-cell-light"
           >
-            Sign Up
+            <span className="cell-text-primary">SIGN UP</span>
           </button>
         </div>
       ) : (
         <div className="relative">
           <button 
             onClick={() => setMenuOpen(!menuOpen)}
-            className="bg-ep-white/80 backdrop-blur-md pl-2 pr-4 py-2 rounded-full flex items-center gap-3 shadow-sm border border-ep-lightgray/50 hover:border-ep-gray transition-colors"
+            className="bg-ep-bg border border-ep-border pl-2 pr-4 py-2 flex items-center gap-3 hover:border-ep-gray transition-colors"
           >
-            <div className="w-8 h-8 rounded-full bg-ep-black text-ep-white flex items-center justify-center font-mono text-xs font-bold">
+            <div className="w-6 h-6 bg-ep-white text-ep-black flex items-center justify-center font-mono text-[10px] font-bold">
               {user.name.charAt(0).toUpperCase()}
             </div>
-            <span className="font-mono text-xs">{user.username}</span>
+            <span className="font-mono text-[10px] uppercase tracking-widest">{user.username}</span>
           </button>
           
           {menuOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-ep-black text-ep-white rounded-2xl shadow-xl overflow-hidden py-2 border border-ep-gray/30">
-              <button className="w-full text-left px-4 py-2 font-mono text-xs hover:bg-ep-gray/20 transition-colors">
+            <div className="absolute right-0 mt-2 w-48 bg-ep-bg border border-ep-border shadow-xl overflow-hidden py-2">
+              <button className="w-full text-left px-4 py-2 font-mono text-[10px] uppercase tracking-widest hover:bg-ep-bg-alt transition-colors">
                 Profile
               </button>
-              <button className="w-full text-left px-4 py-2 font-mono text-xs hover:bg-ep-gray/20 transition-colors">
+              <button className="w-full text-left px-4 py-2 font-mono text-[10px] uppercase tracking-widest hover:bg-ep-bg-alt transition-colors">
                 Settings
               </button>
-              <div className="h-px bg-ep-gray/30 my-1"></div>
+              <div className="h-px bg-ep-border my-1"></div>
               <button 
                 onClick={() => {
                   logout();
                   setMenuOpen(false);
                 }}
-                className="w-full text-left px-4 py-2 font-mono text-xs text-ep-accent hover:bg-ep-gray/20 transition-colors"
+                className="w-full text-left px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-ep-white hover:bg-ep-bg-alt transition-colors"
               >
                 Log Out
               </button>

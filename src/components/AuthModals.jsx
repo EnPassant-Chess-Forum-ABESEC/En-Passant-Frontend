@@ -25,16 +25,16 @@ export default function AuthModals() {
   if (!modalState) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm transition-opacity">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ep-bg/80 backdrop-blur-md transition-opacity">
       <div 
-        className="bg-ep-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative"
+        className="bg-ep-bg border border-ep-border shadow-2xl w-full max-w-md p-10 relative"
         onClick={(e) => e.stopPropagation()}
       >
         <button 
           onClick={closeModal}
-          className="absolute top-4 right-4 text-ep-gray hover:text-ep-black transition-colors font-mono text-xl"
+          className="absolute top-6 right-6 text-ep-gray hover:text-ep-white transition-colors font-mono text-xs uppercase tracking-widest"
         >
-          &times;
+          [ CLOSE ]
         </button>
         {modalState === 'login' ? <LoginForm /> : <SignupForm />}
       </div>
@@ -63,47 +63,47 @@ function LoginForm() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-8 mt-4">
       <div>
-        <h2 className="text-4xl font-serif mb-2 tracking-tight">Log In</h2>
-        <p className="text-ep-gray font-mono text-sm tracking-wide">Enter the arena.</p>
+        <h2 className="text-3xl font-mono uppercase tracking-tight text-ep-black mb-2">Log In</h2>
+        <p className="text-ep-gray font-mono text-xs tracking-widest uppercase">Enter the arena.</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <div>
           <input 
             type="text" 
-            placeholder="Username or Email" 
+            placeholder="USERNAME OR EMAIL" 
             value={formData.identifier}
             onChange={(e) => setFormData({...formData, identifier: e.target.value})}
-            className={`w-full px-4 py-3 rounded-xl bg-ep-bg border ${errors.identifier ? 'border-ep-accent' : 'border-transparent'} focus:border-ep-black focus:outline-none transition-colors font-mono text-sm`}
+            className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.identifier ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
           />
-          {errors.identifier && <p className="text-ep-accent font-mono text-xs mt-1 px-1">{errors.identifier}</p>}
+          {errors.identifier && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.identifier}</p>}
         </div>
         
         <div>
           <input 
             type="password" 
-            placeholder="Password" 
+            placeholder="PASSWORD" 
             value={formData.password}
             onChange={(e) => setFormData({...formData, password: e.target.value})}
-            className={`w-full px-4 py-3 rounded-xl bg-ep-bg border ${errors.password ? 'border-ep-accent' : 'border-transparent'} focus:border-ep-black focus:outline-none transition-colors font-mono text-sm`}
+            className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.password ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
           />
-          {errors.password && <p className="text-ep-accent font-mono text-xs mt-1 px-1">{errors.password}</p>}
+          {errors.password && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.password}</p>}
         </div>
 
-        <div className="flex justify-between items-center">
-          <a href="#" className="text-ep-gray hover:text-ep-black font-mono text-xs transition-colors" onClick={(e) => e.preventDefault()}>Forgot password?</a>
+        <div className="flex justify-end items-center">
+          <a href="#" className="text-ep-gray hover:text-ep-white font-mono text-[10px] uppercase tracking-widest transition-colors" onClick={(e) => e.preventDefault()}>FORGOT PASSWORD?</a>
         </div>
 
-        <button type="submit" className="w-full bg-ep-black text-ep-white py-3 rounded-xl font-mono text-sm hover:bg-ep-accent transition-colors mt-2">
-          Log In
+        <button type="submit" className="w-full bg-ep-white text-ep-black py-4 font-mono text-xs uppercase tracking-widest hover:bg-ep-black hover:text-ep-white border border-ep-white transition-all mt-4">
+          LOG IN
         </button>
       </form>
 
-      <div className="text-center mt-2">
-        <p className="font-mono text-xs text-ep-gray">
-          Don't have an account? <button onClick={() => openModal('signup')} className="text-ep-black hover:text-ep-accent underline">Sign up</button>
+      <div className="text-center mt-4 border-t border-ep-border pt-6">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-ep-gray">
+          Don't have an account? <button onClick={() => openModal('signup')} className="text-ep-white hover:text-ep-gray underline transition-colors ml-2">SIGN UP</button>
         </p>
       </div>
     </div>
@@ -143,10 +143,10 @@ function SignupForm() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-8 mt-4">
       <div>
-        <h2 className="text-4xl font-serif mb-2 tracking-tight">Sign Up</h2>
-        <p className="text-ep-gray font-mono text-sm tracking-wide">Join the official chess club.</p>
+        <h2 className="text-3xl font-mono uppercase tracking-tight text-ep-black mb-2">Sign Up</h2>
+        <p className="text-ep-gray font-mono text-xs tracking-widest uppercase">Join the official forum.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -155,23 +155,23 @@ function SignupForm() {
             <input 
               name="fullName"
               type="text" 
-              placeholder="Full Name" 
+              placeholder="FULL NAME" 
               value={formData.fullName}
               onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-xl bg-ep-bg border ${errors.fullName ? 'border-ep-accent' : 'border-transparent'} focus:border-ep-black focus:outline-none transition-colors font-mono text-sm`}
+              className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.fullName ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
             />
-            {errors.fullName && <p className="text-ep-accent font-mono text-xs mt-1 px-1">{errors.fullName}</p>}
+            {errors.fullName && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.fullName}</p>}
           </div>
           <div>
             <input 
               name="username"
               type="text" 
-              placeholder="Username" 
+              placeholder="USERNAME" 
               value={formData.username}
               onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-xl bg-ep-bg border ${errors.username ? 'border-ep-accent' : 'border-transparent'} focus:border-ep-black focus:outline-none transition-colors font-mono text-sm`}
+              className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.username ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
             />
-            {errors.username && <p className="text-ep-accent font-mono text-xs mt-1 px-1">{errors.username}</p>}
+            {errors.username && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.username}</p>}
           </div>
         </div>
 
@@ -179,24 +179,24 @@ function SignupForm() {
           <input 
             name="email"
             type="email" 
-            placeholder="Email Address" 
+            placeholder="EMAIL ADDRESS" 
             value={formData.email}
             onChange={handleChange}
-            className={`w-full px-4 py-3 rounded-xl bg-ep-bg border ${errors.email ? 'border-ep-accent' : 'border-transparent'} focus:border-ep-black focus:outline-none transition-colors font-mono text-sm`}
+            className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.email ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
           />
-          {errors.email && <p className="text-ep-accent font-mono text-xs mt-1 px-1">{errors.email}</p>}
+          {errors.email && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.email}</p>}
         </div>
 
         <div>
           <input 
             name="birthdate"
             type="date" 
-            placeholder="Birthdate" 
+            placeholder="BIRTHDATE" 
             value={formData.birthdate}
             onChange={handleChange}
-            className={`w-full px-4 py-3 rounded-xl bg-ep-bg border ${errors.birthdate ? 'border-ep-accent' : 'border-transparent'} focus:border-ep-black focus:outline-none transition-colors font-mono text-sm ${!formData.birthdate ? 'text-ep-gray' : ''}`}
+            className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.birthdate ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase ${!formData.birthdate ? 'text-ep-gray/50' : ''}`}
           />
-          {errors.birthdate && <p className="text-ep-accent font-mono text-xs mt-1 px-1">{errors.birthdate}</p>}
+          {errors.birthdate && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.birthdate}</p>}
         </div>
         
         <div className="grid grid-cols-2 gap-4">
@@ -204,23 +204,23 @@ function SignupForm() {
             <input 
               name="password"
               type="password" 
-              placeholder="Password" 
+              placeholder="PASSWORD" 
               value={formData.password}
               onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-xl bg-ep-bg border ${errors.password ? 'border-ep-accent' : 'border-transparent'} focus:border-ep-black focus:outline-none transition-colors font-mono text-sm`}
+              className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.password ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
             />
-            {errors.password && <p className="text-ep-accent font-mono text-xs mt-1 px-1 leading-tight">{errors.password}</p>}
+            {errors.password && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2 leading-tight">{errors.password}</p>}
           </div>
           <div>
             <input 
               name="confirmPassword"
               type="password" 
-              placeholder="Confirm Password" 
+              placeholder="CONFIRM PASSWORD" 
               value={formData.confirmPassword}
               onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-xl bg-ep-bg border ${errors.confirmPassword ? 'border-ep-accent' : 'border-transparent'} focus:border-ep-black focus:outline-none transition-colors font-mono text-sm`}
+              className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.confirmPassword ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
             />
-            {errors.confirmPassword && <p className="text-ep-accent font-mono text-xs mt-1 px-1 leading-tight">{errors.confirmPassword}</p>}
+            {errors.confirmPassword && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2 leading-tight">{errors.confirmPassword}</p>}
           </div>
         </div>
 
@@ -228,23 +228,23 @@ function SignupForm() {
           <input 
             name="chessUsername"
             type="text" 
-            placeholder="Chess.com Username" 
+            placeholder="CHESS.COM USERNAME" 
             value={formData.chessUsername}
             onChange={handleChange}
-            className={`w-full px-4 py-3 rounded-xl bg-ep-bg border ${errors.chessUsername ? 'border-ep-accent' : 'border-transparent'} focus:border-ep-black focus:outline-none transition-colors font-mono text-sm`}
+            className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.chessUsername ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
           />
-          {errors.chessUsername && <p className="text-ep-accent font-mono text-xs mt-1 px-1">{errors.chessUsername}</p>}
-          {!errors.chessUsername && <p className="text-ep-gray font-mono text-xs mt-1 px-1">Used to pull stats for your Community profile.</p>}
+          {errors.chessUsername && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.chessUsername}</p>}
+          {!errors.chessUsername && <p className="text-ep-gray font-mono text-[9px] uppercase tracking-widest mt-2">USED FOR COMMUNITY STATS.</p>}
         </div>
 
-        <button type="submit" className="w-full bg-ep-black text-ep-white py-3 rounded-xl font-mono text-sm hover:bg-ep-accent transition-colors mt-2">
-          Create Account
+        <button type="submit" className="w-full bg-ep-white text-ep-black py-4 font-mono text-xs uppercase tracking-widest hover:bg-ep-black hover:text-ep-white border border-ep-white transition-all mt-4">
+          CREATE ACCOUNT
         </button>
       </form>
 
-      <div className="text-center mt-2">
-        <p className="font-mono text-xs text-ep-gray">
-          Already have an account? <button onClick={() => openModal('login')} className="text-ep-black hover:text-ep-accent underline">Log in</button>
+      <div className="text-center mt-2 border-t border-ep-border pt-6">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-ep-gray">
+          Already have an account? <button onClick={() => openModal('login')} className="text-ep-white hover:text-ep-gray underline transition-colors ml-2">LOG IN</button>
         </p>
       </div>
     </div>
