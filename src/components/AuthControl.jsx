@@ -4,11 +4,8 @@ import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 export default function AuthControl() {
-  const { user, logout, openModal, isClient } = useAuth();
+  const { user, logout, openModal } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  // Prevent hydration mismatch by not rendering anything auth-related until client side
-  if (!isClient) return null;
 
   return (
     <div className="fixed top-8 right-8 md:top-12 md:right-12 z-40 flex items-center gap-3">

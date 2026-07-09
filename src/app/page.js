@@ -1,4 +1,4 @@
-import Image from 'next/image';
+
 import Logo from '../components/Logo';
 import OnThisDay from '../components/OnThisDay';
 import LayeredHero from '../components/LayeredHero';
@@ -24,7 +24,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-mono text-ep-black uppercase tracking-tight">Activities</h2>
           </div>
           <p className="font-mono text-sm text-ep-gray max-w-xs md:text-right uppercase tracking-wider">
-            Where theory hits the board. Here's what keeps the forum running week to week.
+            Where theory hits the board. Here&apos;s what keeps the forum running week to week.
           </p>
         </div>
         
@@ -87,7 +87,7 @@ export default function Home() {
               </div>
               <div className="coord-marker">[{activity.coord}]</div>
               <div className="flex-1 mt-8">
-                <h4 className={`font-mono uppercase tracking-widest mb-2 cell-text-primary ${activity.featured ? 'text-2xl' : 'text-lg'}`}>{activity.title}</h4>
+                <h3 className={`font-mono uppercase tracking-widest mb-2 cell-text-primary ${activity.featured ? 'text-2xl' : 'text-lg'}`}>{activity.title}</h3>
                 <p className="font-mono text-[10px] uppercase tracking-widest mb-6 border-b pb-4 inline-block cell-text-secondary cell-border">{activity.tag}</p>
               </div>
               <p className={`font-mono text-sm leading-relaxed uppercase tracking-wide cell-text-secondary ${activity.featured ? 'mt-4' : ''}`}>
@@ -103,7 +103,7 @@ export default function Home() {
           ═══════════════════════════════════════════════════════════════ */}
       <section className="px-6 md:px-12 lg:px-24 py-24 md:py-32 relative border-b border-ep-border bg-ep-bg overflow-hidden">
         {/* Subtle 8x8 micro-grid decorative motif in corner */}
-        <div className="absolute top-12 right-12 opacity-10 pointer-events-none grid grid-cols-8 grid-rows-8 w-64 h-64 border border-ep-border">
+        <div aria-hidden="true" className="absolute top-12 right-12 opacity-10 pointer-events-none grid grid-cols-8 grid-rows-8 w-64 h-64 border border-ep-border">
           {Array.from({length: 64}).map((_, i) => (
             <div key={i} className={`border border-ep-border/30 ${i % 2 === 0 ? 'bg-ep-white' : 'bg-transparent'} ${(i === 27 || i === 36) ? '!bg-ep-white !opacity-100' : ''}`} />
           ))}
@@ -130,7 +130,7 @@ export default function Home() {
               <div className="coord-marker">[G7]</div>
               <blockquote className="border-l border-ep-white pl-6 md:pl-10 cell-border">
                 <p className="font-mono text-xl md:text-2xl cell-text-primary uppercase tracking-wide leading-relaxed">
-                  "We play for glory, we analyze for truth, and we build community through every checkmate."
+                  &quot;We play for glory, we analyze for truth, and we build community through every checkmate.&quot;
                 </p>
               </blockquote>
             </div>
@@ -156,12 +156,12 @@ export default function Home() {
           <div className="absolute top-4 left-4 font-mono text-[10px] text-ep-bg/50 tracking-widest">[03]</div>
           <div className="absolute top-4 right-4 font-mono text-[10px] text-ep-bg/50 tracking-widest">[ENDGAME]</div>
           
-          <h2 className="text-5xl md:text-7xl font-mono uppercase tracking-tight text-ep-bg mb-6 mt-8">Take Your Seat</h2>
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-mono uppercase tracking-tight text-ep-bg mb-6 mt-8">Take Your Seat</h2>
           <p className="font-mono text-sm md:text-base text-ep-bg/70 mb-16 uppercase tracking-wider">
-            Join the conversation. We're always looking for new challengers.
+            Join the conversation. We&apos;re always looking for new challengers.
           </p>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-ep-bg/10 border border-ep-bg/10 mb-16 text-left shadow-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ep-bg/10 border border-ep-bg/10 mb-16 text-left shadow-sm">
             <a href="https://www.instagram.com/enpassant.abesec/" target="_blank" rel="noopener noreferrer" className="p-6 flex flex-col gap-4 group chess-cell-light relative">
               <div className="coord-marker">[H1]</div>
               <span className="font-mono text-[10px] uppercase tracking-widest border-b pb-2 cell-text-secondary cell-border">Instagram</span>

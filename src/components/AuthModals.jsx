@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { loginSchema, signupSchema } from '../lib/validation/auth';
 
 export default function AuthModals() {
-  const { modalState, closeModal, login } = useAuth();
+  const { modalState, closeModal } = useAuth();
   
   // Close on Escape key
   useEffect(() => {
@@ -27,7 +27,10 @@ export default function AuthModals() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ep-bg/80 backdrop-blur-md transition-opacity">
       <div 
-        className="bg-ep-bg border border-ep-border shadow-2xl w-full max-w-md p-10 relative"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        className="bg-ep-bg border border-ep-border shadow-2xl w-full max-w-md p-6 md:p-10 relative max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <button 
@@ -65,14 +68,17 @@ function LoginForm() {
   return (
     <div className="flex flex-col gap-8 mt-4">
       <div>
-        <h2 className="text-3xl font-mono uppercase tracking-tight text-ep-black mb-2">Log In</h2>
+        <h2 id="modal-title" className="text-3xl font-mono uppercase tracking-tight text-ep-black mb-2">Log In</h2>
         <p className="text-ep-gray font-mono text-xs tracking-widest uppercase">Enter the arena.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <div>
+          <label htmlFor="login-identifier" className="sr-only">Username or Email</label>
           <input 
+            id="login-identifier"
             type="text" 
+            autoFocus
             placeholder="USERNAME OR EMAIL" 
             value={formData.identifier}
             onChange={(e) => setFormData({...formData, identifier: e.target.value})}
@@ -82,7 +88,9 @@ function LoginForm() {
         </div>
         
         <div>
+          <label htmlFor="login-password" className="sr-only">Password</label>
           <input 
+            id="login-password"
             type="password" 
             placeholder="PASSWORD" 
             value={formData.password}
@@ -93,7 +101,7 @@ function LoginForm() {
         </div>
 
         <div className="flex justify-end items-center">
-          <a href="#" className="text-ep-gray hover:text-ep-white font-mono text-[10px] uppercase tracking-widest transition-colors" onClick={(e) => e.preventDefault()}>FORGOT PASSWORD?</a>
+          <button type="button" disabled className="text-ep-gray/50 cursor-not-allowed font-mono text-[10px] uppercase tracking-widest transition-colors">FORGOT PASSWORD? (UNAVAILABLE)</button>
         </div>
 
         <button type="submit" className="w-full bg-ep-white text-ep-black py-4 font-mono text-xs uppercase tracking-widest hover:bg-ep-black hover:text-ep-white border border-ep-white transition-all mt-4">
@@ -103,7 +111,7 @@ function LoginForm() {
 
       <div className="text-center mt-4 border-t border-ep-border pt-6">
         <p className="font-mono text-[10px] uppercase tracking-widest text-ep-gray">
-          Don't have an account? <button onClick={() => openModal('signup')} className="text-ep-white hover:text-ep-gray underline transition-colors ml-2">SIGN UP</button>
+          Don&apos;t have an account? <button onClick={() => openModal('signup')} className="text-ep-white hover:text-ep-gray underline transition-colors ml-2">SIGN UP</button>
         </p>
       </div>
     </div>
@@ -145,16 +153,19 @@ function SignupForm() {
   return (
     <div className="flex flex-col gap-8 mt-4">
       <div>
-        <h2 className="text-3xl font-mono uppercase tracking-tight text-ep-black mb-2">Sign Up</h2>
+        <h2 id="modal-title" className="text-3xl font-mono uppercase tracking-tight text-ep-black mb-2">Sign Up</h2>
         <p className="text-ep-gray font-mono text-xs tracking-widest uppercase">Join the official forum.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
+            <label htmlFor="signup-fullname" className="sr-only">Full Name</label>
             <input 
+              id="signup-fullname"
               name="fullName"
-              type="text" 
+              type="text"
+              autoFocus
               placeholder="FULL NAME" 
               value={formData.fullName}
               onChange={handleChange}
@@ -163,7 +174,9 @@ function SignupForm() {
             {errors.fullName && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.fullName}</p>}
           </div>
           <div>
+            <label htmlFor="signup-username" className="sr-only">Username</label>
             <input 
+              id="signup-username"
               name="username"
               type="text" 
               placeholder="USERNAME" 
@@ -176,7 +189,9 @@ function SignupForm() {
         </div>
 
         <div>
+          <label htmlFor="signup-email" className="sr-only">Email Address</label>
           <input 
+            id="signup-email"
             name="email"
             type="email" 
             placeholder="EMAIL ADDRESS" 
@@ -188,7 +203,9 @@ function SignupForm() {
         </div>
 
         <div>
+          <label htmlFor="signup-birthdate" className="sr-only">Birthdate</label>
           <input 
+            id="signup-birthdate"
             name="birthdate"
             type="date" 
             placeholder="BIRTHDATE" 
@@ -199,9 +216,11 @@ function SignupForm() {
           {errors.birthdate && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.birthdate}</p>}
         </div>
         
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
+            <label htmlFor="signup-password" className="sr-only">Password</label>
             <input 
+              id="signup-password"
               name="password"
               type="password" 
               placeholder="PASSWORD" 
@@ -212,7 +231,9 @@ function SignupForm() {
             {errors.password && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2 leading-tight">{errors.password}</p>}
           </div>
           <div>
+            <label htmlFor="signup-confirm-password" className="sr-only">Confirm Password</label>
             <input 
+              id="signup-confirm-password"
               name="confirmPassword"
               type="password" 
               placeholder="CONFIRM PASSWORD" 
@@ -225,7 +246,9 @@ function SignupForm() {
         </div>
 
         <div>
+          <label htmlFor="signup-chess-username" className="sr-only">Chess.com Username</label>
           <input 
+            id="signup-chess-username"
             name="chessUsername"
             type="text" 
             placeholder="CHESS.COM USERNAME" 

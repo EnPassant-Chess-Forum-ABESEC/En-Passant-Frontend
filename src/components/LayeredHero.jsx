@@ -31,11 +31,12 @@ export default function LayeredHero() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full h-[100vh] min-h-[700px] overflow-hidden bg-ep-bg flex items-center justify-center border-b border-ep-border"
+      className="relative w-full h-[100svh] min-h-[500px] md:min-h-[700px] overflow-hidden bg-ep-bg flex items-center justify-center border-b border-ep-border"
     >
       {/* Static Background Grid */}
       <div 
         ref={gridRef} 
+        aria-hidden="true"
         className="absolute inset-0 flex flex-wrap opacity-60"
         style={{
           width: '200vw',
@@ -48,7 +49,7 @@ export default function LayeredHero() {
       />
       
       {/* Subtle Static Vignette Overlay */}
-      <div className="absolute inset-0 z-10 pointer-events-none bg-[radial-gradient(ellipse_at_center,_transparent_10%,_#080808_100%)]" />
+      <div className="absolute inset-0 z-10 pointer-events-none bg-[radial-gradient(ellipse_at_center,_transparent_10%,_#080808_100%)]" aria-hidden="true" />
 
       {/* Content */}
       <div className="relative z-30 px-6 md:px-12 w-full max-w-5xl mx-auto mt-[-5vh]">
@@ -58,7 +59,7 @@ export default function LayeredHero() {
           </span>
           <h1 className="text-5xl md:text-7xl font-mono text-ep-black mb-4 leading-none tracking-tight drop-shadow-md">
             HELLO.<br />
-            <span className="text-ep-gray">WE'VE BEEN<br />EXPECTING YOU.</span>
+            <span className="text-ep-gray">WE&apos;VE BEEN<br />EXPECTING YOU.</span>
           </h1>
           <p className="font-mono text-sm md:text-base text-ep-gray max-w-md leading-relaxed">
             400+ PLAYERS DEEP. THE OFFICIAL CHESS FORUM OF ABESEC. A RIGOROUS SPACE FOR TOURNAMENTS, PUZZLES, AND COMMUNITY.

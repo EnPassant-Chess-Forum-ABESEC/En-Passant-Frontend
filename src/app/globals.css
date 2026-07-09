@@ -49,7 +49,7 @@
 @layer utilities {
   /* Chess Inversion Utilities */
   .chess-cell-dark {
-    @apply bg-ep-bg-raised text-ep-accent border border-[rgba(232,229,220,0.1)] transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ep-accent cursor-pointer;
+    @apply bg-ep-bg-raised text-ep-accent border border-[rgba(232,229,220,0.1)] transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ep-accent;
   }
   .chess-cell-dark:hover, .chess-cell-dark:focus-visible {
     @apply bg-ep-accent text-[#090909] border-ep-accent;
@@ -78,7 +78,7 @@
   }
   
   .chess-cell-light {
-    @apply bg-ep-accent text-[#090909] border border-ep-accent transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ep-bg cursor-pointer;
+    @apply bg-ep-accent text-[#090909] border border-ep-accent transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ep-bg;
   }
   .chess-cell-light:hover, .chess-cell-light:focus-visible {
     @apply bg-[#090909] text-ep-accent border-[#090909];
@@ -119,5 +119,13 @@
   .chess-cell-dark:hover .coord-marker, .chess-cell-dark:focus-visible .coord-marker,
   .chess-cell-light:hover .coord-marker, .chess-cell-light:focus-visible .coord-marker {
     @apply opacity-100;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

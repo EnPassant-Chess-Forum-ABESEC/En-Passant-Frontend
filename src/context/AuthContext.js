@@ -1,17 +1,12 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [modalState, setModalState] = useState(null); // 'login' | 'signup' | null
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   const login = (userData) => {
     setUser({
@@ -35,7 +30,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, modalState, openModal, closeModal, isClient }}>
+    <AuthContext.Provider value={{ user, login, logout, modalState, openModal, closeModal }}>
       {children}
     </AuthContext.Provider>
   );
