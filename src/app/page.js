@@ -76,7 +76,7 @@ export default function Home() {
           ].map((activity, i) => (
             <div 
               key={i} 
-              className={`group flex flex-col p-8 md:p-12 relative ${
+              className={`group flex flex-col p-8 md:p-12 relative interactive-active ${
                 activity.featured 
                   ? 'md:col-span-2 lg:col-span-1 lg:row-span-2 chess-cell-light' 
                   : 'chess-cell-dark'
@@ -162,33 +162,33 @@ export default function Home() {
           </p>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ep-bg/10 border border-ep-bg/10 mb-16 text-left shadow-sm">
-            <a href="https://www.instagram.com/enpassant.abesec/" target="_blank" rel="noopener noreferrer" className="p-6 flex flex-col gap-4 group chess-cell-light relative">
+            <a href="https://www.instagram.com/enpassant.abesec/" target="_blank" rel="noopener noreferrer" className="p-6 flex flex-col gap-4 group chess-cell-light interactive-active relative">
               <div className="coord-marker">[H1]</div>
               <span className="font-mono text-[10px] uppercase tracking-widest border-b pb-2 cell-text-secondary cell-border">Instagram</span>
               <span className="font-mono text-[10px] uppercase tracking-wide flex items-center justify-between w-full cell-text-primary">@enpassant.abesec <span className="opacity-0 group-hover:opacity-100 transition-opacity">-&gt;</span></span>
             </a>
             
-            <a href="https://chat.whatsapp.com/IoiMk9ru9CpEew7dHJkHve" target="_blank" rel="noopener noreferrer" className="p-6 flex flex-col gap-4 group chess-cell-light relative">
+            <a href="https://chat.whatsapp.com/IoiMk9ru9CpEew7dHJkHve" target="_blank" rel="noopener noreferrer" className="p-6 flex flex-col gap-4 group chess-cell-light interactive-active relative">
               <div className="coord-marker">[H2]</div>
               <span className="font-mono text-[10px] uppercase tracking-widest border-b pb-2 cell-text-secondary cell-border">WhatsApp</span>
               <span className="font-mono text-[10px] uppercase tracking-wide flex items-center justify-between w-full cell-text-primary">Join Chat <span className="opacity-0 group-hover:opacity-100 transition-opacity">-&gt;</span></span>
             </a>
 
-            <a href="https://discord.com/invite/Edtgnxnc37" target="_blank" rel="noopener noreferrer" className="p-6 flex flex-col gap-4 group chess-cell-light relative">
+            <a href="https://discord.com/invite/Edtgnxnc37" target="_blank" rel="noopener noreferrer" className="p-6 flex flex-col gap-4 group chess-cell-light interactive-active relative">
               <div className="coord-marker">[H3]</div>
               <span className="font-mono text-[10px] uppercase tracking-widest border-b pb-2 cell-text-secondary cell-border">Discord</span>
               <span className="font-mono text-[10px] uppercase tracking-wide flex items-center justify-between w-full cell-text-primary">Join Server <span className="opacity-0 group-hover:opacity-100 transition-opacity">-&gt;</span></span>
             </a>
 
-            <a href="https://www.chess.com/club/en-passant-abesec" target="_blank" rel="noopener noreferrer" className="p-6 flex flex-col gap-4 group chess-cell-light relative">
+            <a href="https://www.chess.com/club/en-passant-abesec" target="_blank" rel="noopener noreferrer" className="p-6 flex flex-col gap-4 group chess-cell-light interactive-active relative">
               <div className="coord-marker">[H4]</div>
               <span className="font-mono text-[10px] uppercase tracking-widest border-b pb-2 cell-text-secondary cell-border">Chess.com</span>
               <span className="font-mono text-[10px] uppercase tracking-wide flex items-center justify-between w-full cell-text-primary">View Chess.com Page <span className="opacity-0 group-hover:opacity-100 transition-opacity">-&gt;</span></span>
             </a>
           </div>
 
-          <button className="px-12 py-4 font-mono text-xs tracking-widest uppercase shadow-[4px_4px_0_0_rgba(10,10,10,0.1)] chess-cell-dark">
-            <span className="cell-text-primary">JOIN THE FORUM</span>
+          <button className="px-12 py-4 font-mono text-xs tracking-widest uppercase shadow-[4px_4px_0_0_rgba(10,10,10,0.1)] chess-cell-dark interactive-active">
+            <span className="cell-text-primary">APPLY TO THE FORUM</span>
           </button>
         </div>
       </section>

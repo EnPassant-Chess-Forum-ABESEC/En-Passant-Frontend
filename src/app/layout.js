@@ -3,6 +3,8 @@ import './globals.css';
 import { AuthProvider } from '../context/AuthContext';
 import AuthControl from '../components/AuthControl';
 import AuthModals from '../components/AuthModals';
+import TickerLayout from '../components/TickerLayout';
+import { TransitionProvider } from '../context/TransitionContext';
 
 const courier = Courier_Prime({
   weight: ['400', '700'],
@@ -19,13 +21,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${courier.variable}`}>
-      <body className="min-h-screen relative">
+      <body className={`min-h-screen relative`}>
         <AuthProvider>
-          <div className="relative z-10">
-            <AuthControl />
-            <AuthModals />
-            {children}
-          </div>
+          <TransitionProvider>
+            <TickerLayout>
+              <AuthControl />
+              <AuthModals />
+              {children}
+            </TickerLayout>
+          </TransitionProvider>
         </AuthProvider>
       </body>
     </html>

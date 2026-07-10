@@ -5,7 +5,7 @@
   --color-ep-bg-deep: #0B0B0B; /* Deep section */
   --color-ep-bg-raised: #101010; /* Raised surface */
   --color-ep-bg-highlight: #161616; /* Highlighted dark surface */
-  --color-ep-accent: #E8E5DC; /* Warm light surface */
+  --color-ep-accent: #EBE8E0; /* Warm light surface (PAPER) */
   --color-ep-accent-hover: #FFFFFF;
   --color-ep-black: #F1EFE8; /* Primary text (inverted naming for legacy compatibility) */
   --color-ep-white: #0A0A0A; /* Dark contrast text */
@@ -14,13 +14,89 @@
   --color-ep-primary: #6F6D67; /* Muted text */
   --color-ep-border: rgba(241,239,232,0.08); /* Borders */
 
+  /* ENPASSANT CLASSIC BOARD THEME */
+  --color-board-light: #EBE8E0;
+  --color-board-dark: #1A1918;
+  --color-board-active: #9A2BDB;
+  --color-board-active-strong: #7A22B0;
+  --color-board-light-text: #0F0F0F;
+  --color-board-dark-text: #F1EFE8;
+  --color-board-active-text: #FFFFFF;
+  --color-board-border: rgba(235, 232, 224, 0.08);
 
   --font-serif: var(--font-courier), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-mono: var(--font-courier), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-sans: var(--font-courier), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --ease-board: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 250ms;
+  --duration-base: 500ms;
+  --duration-slow: 800ms;
+
+  --animate-marquee: marquee 70s linear infinite;
+  --animate-reveal-up: reveal-up var(--duration-base) var(--ease-board) forwards;
+  --animate-reveal-down: reveal-down var(--duration-base) var(--ease-board) forwards;
+  --animate-fade-in: fade-in var(--duration-base) var(--ease-board) forwards;
+  --animate-clip-down: clip-down var(--duration-slow) var(--ease-board) forwards;
+  --animate-resolve-up: resolve-up var(--duration-base) var(--ease-board) forwards;
+  
+  @keyframes marquee {
+    from { transform: translateX(0%); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes reveal-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes resolve-up {
+    from { opacity: 0.15; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes reveal-down {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes clip-down {
+    from { clip-path: inset(0 0 100% 0); }
+    to { clip-path: inset(0 0 0 0); }
+  }
 }
 
 @layer base {
+  :root {
+    --recruitment-ticker-height: 0px;
+  }
+  .recruitment-open {
+    --recruitment-ticker-height: 28px;
+  }
+  @media (min-width: 768px) {
+    .recruitment-open {
+      --recruitment-ticker-height: 36px;
+    }
+  }
+
+  /* LIGHT THEME FOR RECRUITMENT PAGE (4-TONE SYSTEM) */
+  .theme-light {
+    --color-ep-bg: #EBE8E0; /* PAPER */
+    --color-ep-bg-deep: #DCD9D0; /* SHADED PAPER */
+    --color-ep-bg-raised: #F4F1EA; /* RAISED PAPER */
+    --color-ep-bg-highlight: #F0EDE4; /* Alternate PAPER */
+    
+    --color-ep-accent: #0F0F0F; /* INK */
+    --color-ep-accent-hover: #000000;
+    
+    --color-ep-black: #080808; /* INK (Pure) */
+    --color-ep-white: #FAF8F2; /* Purest Light */
+    --color-ep-gray: #4A4A4A; /* Muted INK (Improved Readability) */
+    --color-ep-lightgray: rgba(15,15,15,0.12);
+    --color-ep-primary: #5A5A5A; /* Stronger Muted INK */
+    --color-ep-border: rgba(15,15,15,0.18); /* Stronger dark borders */
+  }
+
   body {
     @apply bg-[#0A0A0A] text-[#F2F2EE] font-mono;
     /* Custom scrollbar for terminal feel */
@@ -47,78 +123,94 @@
 }
 
 @layer utilities {
-  /* Chess Inversion Utilities */
+  /* Base Board Cell Classes (Static Geometry) */
   .chess-cell-dark {
-    @apply bg-ep-bg-raised text-ep-accent border border-[rgba(232,229,220,0.1)] transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ep-accent;
+    @apply bg-board-dark text-board-dark-text border border-board-border transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-board-active;
   }
-  .chess-cell-dark:hover, .chess-cell-dark:focus-visible {
-    @apply bg-ep-accent text-[#090909] border-ep-accent;
-  }
-  
-  /* Handle nested text for dark cell */
   .chess-cell-dark .cell-text-primary {
-    @apply text-ep-black transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
+    @apply text-board-dark-text transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
   }
-  .chess-cell-dark:hover .cell-text-primary, .chess-cell-dark:focus-visible .cell-text-primary {
-    @apply text-[#090909];
-  }
-  
   .chess-cell-dark .cell-text-secondary {
-    @apply text-ep-gray transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
+    @apply text-board-dark-text opacity-70 transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
   }
-  .chess-cell-dark:hover .cell-text-secondary, .chess-cell-dark:focus-visible .cell-text-secondary {
-    @apply text-[#444444];
-  }
-  
   .chess-cell-dark .cell-border {
-    @apply border-ep-border transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
-  }
-  .chess-cell-dark:hover .cell-border, .chess-cell-dark:focus-visible .cell-border {
-    @apply border-[#090909]/20;
+    @apply border-board-border transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
   }
   
   .chess-cell-light {
-    @apply bg-ep-accent text-[#090909] border border-ep-accent transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ep-bg;
+    @apply bg-board-light text-board-light-text border border-board-border transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-board-active;
   }
-  .chess-cell-light:hover, .chess-cell-light:focus-visible {
-    @apply bg-[#090909] text-ep-accent border-[#090909];
-  }
-  
-  /* Handle nested text for light cell */
   .chess-cell-light .cell-text-primary {
-    @apply text-[#090909] transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
+    @apply text-board-light-text transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
   }
-  .chess-cell-light:hover .cell-text-primary, .chess-cell-light:focus-visible .cell-text-primary {
-    @apply text-ep-accent;
-  }
-  
   .chess-cell-light .cell-text-secondary {
-    @apply text-[#444444] transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
+    @apply text-board-light-text opacity-70 transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
   }
-  .chess-cell-light:hover .cell-text-secondary, .chess-cell-light:focus-visible .cell-text-secondary {
-    @apply text-ep-gray;
-  }
-  
   .chess-cell-light .cell-border {
-    @apply border-[#090909]/20 transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
-  }
-  .chess-cell-light:hover .cell-border, .chess-cell-light:focus-visible .cell-border {
-    @apply border-ep-accent/20;
+    @apply border-board-light-text/20 transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
   }
 
-  /* Coordinate Marker */
+  /* Coordinate Marker Base */
   .coord-marker {
     @apply opacity-0 transition-opacity duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] font-mono text-[10px] tracking-widest absolute bottom-4 right-4 pointer-events-none;
   }
   .chess-cell-dark .coord-marker {
-    @apply text-[#090909]; /* Will be visible when parent is light */
+    @apply text-board-dark-text opacity-50;
   }
   .chess-cell-light .coord-marker {
-    @apply text-ep-accent; /* Will be visible when parent is dark */
+    @apply text-board-light-text opacity-50;
   }
-  .chess-cell-dark:hover .coord-marker, .chess-cell-dark:focus-visible .coord-marker,
-  .chess-cell-light:hover .coord-marker, .chess-cell-light:focus-visible .coord-marker {
-    @apply opacity-100;
+
+  /* 
+   =============================================
+   ACTIVE SQUARE INTERACTION (Magenta Highlight) 
+   =============================================
+  */
+  .interactive-active {
+    @apply transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
+  }
+  .interactive-active:hover, .interactive-active:focus-visible,
+  .group:hover .interactive-active.group-hover-active {
+    @apply bg-board-active text-board-active-text border-board-active-strong;
+  }
+  .interactive-active:hover .cell-text-primary, .interactive-active:focus-visible .cell-text-primary,
+  .group:hover .interactive-active.group-hover-active .cell-text-primary {
+    @apply text-board-active-text;
+  }
+  .interactive-active:hover .cell-text-secondary, .interactive-active:focus-visible .cell-text-secondary,
+  .group:hover .interactive-active.group-hover-active .cell-text-secondary {
+    @apply text-board-active-text opacity-80;
+  }
+  .interactive-active:hover .cell-border, .interactive-active:focus-visible .cell-border,
+  .group:hover .interactive-active.group-hover-active .cell-border {
+    @apply border-board-active-text/30;
+  }
+  .interactive-active:hover .coord-marker, .interactive-active:focus-visible .coord-marker,
+  .group:hover .interactive-active.group-hover-active .coord-marker {
+    @apply opacity-100 text-board-active-text;
+  }
+
+  /* 
+   =============================================
+   MONOCHROME INVERT INTERACTION (Auth UI Controls)
+   =============================================
+  */
+  .interactive-invert.chess-cell-dark:hover, .interactive-invert.chess-cell-dark:focus-visible {
+    @apply bg-board-light text-board-light-text border-board-light;
+  }
+  .interactive-invert.chess-cell-dark:hover .cell-text-primary, .interactive-invert.chess-cell-dark:focus-visible .cell-text-primary {
+    @apply text-board-light-text;
+  }
+  .interactive-invert.chess-cell-light:hover, .interactive-invert.chess-cell-light:focus-visible {
+    @apply bg-board-dark text-board-dark-text border-board-dark;
+  }
+  .interactive-invert.chess-cell-light:hover .cell-text-primary, .interactive-invert.chess-cell-light:focus-visible .cell-text-primary {
+    @apply text-board-dark-text;
+  }
+  
+  /* THEME LIGHT SCOPED OVERRIDES (Non-board overrides only) */
+  .theme-light {
+    /* Coordinate markers for non-cells on light theme, if needed */
   }
 }
 
@@ -127,5 +219,10 @@
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+  /* Explicitly stop infinite marquee under reduced motion to prevent rapid flashing */
+  .animate-marquee, [class*="animate-marquee"] {
+    animation: none !important;
   }
 }

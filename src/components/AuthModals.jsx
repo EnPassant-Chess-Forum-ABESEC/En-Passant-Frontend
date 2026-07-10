@@ -3,6 +3,9 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { loginSchema, signupSchema } from '../lib/validation/auth';
+import { recruitmentConfig } from '../lib/config/recruitment';
+import Link from 'next/link';
+import { useRecruitmentTransition } from '../context/TransitionContext';
 
 export default function AuthModals() {
   const { modalState, closeModal } = useAuth();
@@ -25,7 +28,7 @@ export default function AuthModals() {
   if (!modalState) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ep-bg/80 backdrop-blur-md transition-opacity">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ep-bg/80 backdrop-blur-md transition-opacity" onClick={closeModal}>
       <div 
         role="dialog"
         aria-modal="true"
@@ -108,6 +111,8 @@ function LoginForm() {
           LOG IN
         </button>
       </form>
+      
+      <RecruitmentCallout />
 
       <div className="text-center mt-4 border-t border-ep-border pt-6">
         <p className="font-mono text-[10px] uppercase tracking-widest text-ep-gray">
@@ -265,11 +270,50 @@ function SignupForm() {
         </button>
       </form>
 
+      <RecruitmentCallout />
+
       <div className="text-center mt-2 border-t border-ep-border pt-6">
         <p className="font-mono text-[10px] uppercase tracking-widest text-ep-gray">
           Already have an account? <button onClick={() => openModal('login')} className="text-ep-white hover:text-ep-gray underline transition-colors ml-2">LOG IN</button>
         </p>
       </div>
+    </div>
+  );
+}
+
+function RecruitmentCallout() {
+  const { closeModal } = useAuth();
+  const { startRecruitmentTransition } = useRecruitmentTransition() || {};
+  
+  if (!recruitmentConfig.isOpen) return null;
+
+  const handleApplyClick = (e) => {
+    // Don't hijack modified clicks (Ctrl/Cmd+click, middle-click = new tab intent)
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    if (startRecruitmentTransition) {
+      e.preventDefault();
+      closeModal();
+      startRecruitmentTransition(recruitmentConfig.informationPath);
+    } else {
+      closeModal();
+    }
+  };
+
+  return (
+    <div className="mt-6 border border-ep-accent/20 bg-ep-accent/5 p-4 flex flex-col gap-2">
+      <p className="font-mono text-[10px] tracking-widest uppercase text-ep-accent">
+        FORUM RECRUITMENT IS OPEN
+      </p>
+      <p className="font-mono text-xs text-ep-gray leading-relaxed">
+        Want to help organize tournaments, events, and chess culture at ABESEC?
+      </p>
+      <Link 
+        href={recruitmentConfig.informationPath}
+        onClick={handleApplyClick}
+        className="mt-2 font-mono text-[10px] tracking-widest uppercase text-ep-white hover:text-ep-accent transition-colors flex items-center group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ep-white focus-visible:ring-offset-4 focus-visible:ring-offset-ep-bg w-fit"
+      >
+        APPLY TO THE FORUM <span className="ml-2 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all">-&gt;</span>
+      </Link>
     </div>
   );
 }

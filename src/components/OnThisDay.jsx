@@ -106,7 +106,7 @@ export default function OnThisDay() {
                </div>
             ) : (
               thisWeekLegends.map((legend, i) => (
-                <div key={i} className="p-6 relative chess-cell-dark flex-1">
+                <div key={i} className="p-6 relative chess-cell-dark interactive-active flex-1 group">
                   <div className="absolute right-6 top-6 opacity-0 group-hover:opacity-100 transition-opacity font-mono text-xs cell-text-secondary">
                     [{formatMonth(legend.month)}.{padDay(legend.day)}]
                   </div>
@@ -138,7 +138,7 @@ export default function OnThisDay() {
             ) : (
               <div className="flex-1 flex flex-col gap-px bg-ep-border">
               {thisWeekMembers.map((member, i) => (
-                <div key={i} className="flex items-center gap-6 p-6 relative chess-cell-dark flex-1">
+                <div key={i} className="flex items-center gap-6 p-6 relative chess-cell-dark interactive-active flex-1 group">
                   <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all cell-border border relative overflow-hidden">
                     {member.avatarUrl ? <Image src={member.avatarUrl} alt={member.name} fill className="object-cover" unoptimized /> : <span className="font-mono text-xs cell-text-secondary">?</span>}
                   </div>
