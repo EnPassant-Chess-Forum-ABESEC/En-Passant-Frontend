@@ -95,7 +95,7 @@ export function TransitionProvider({ children }) {
             Fades out during SETTLING to reveal the destination page underneath. */}
         <div
           className={`
-            absolute inset-0 bg-ep-accent
+            absolute inset-0 bg-board-light
             transition-opacity duration-[600ms] ease-out
             ${transitionState === 'SETTLING' ? 'opacity-0' : 'opacity-100'}
           `}

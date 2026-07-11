@@ -19,11 +19,11 @@ export default function RecruitmentTicker() {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[100] bg-ep-accent text-[#090909] border-b border-[#090909]/10 h-[28px] md:h-[36px] overflow-hidden group">
+    <div className="fixed top-0 left-0 right-0 z-[100] bg-board-light text-text-on-light border-b border-[rgba(0,0,0,0.1)] h-[28px] md:h-[36px] overflow-hidden group hover:bg-board-active hover:text-text-on-active transition-colors duration-300">
       <Link 
         href={recruitmentConfig.informationPath}
         onClick={handleClick}
-        className="block w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#090909]/20"
+        className="block w-full h-full focus-visible:outline-none focus-visible:bg-board-active focus-visible:text-text-on-active"
         aria-label={`Recruitment Information: ${recruitmentConfig.tickerMessage.split('//')[1]?.trim() || 'Applications Open'}`}
       >
         {/* Opacity-only fade. The marquee animation exclusively owns `transform`,

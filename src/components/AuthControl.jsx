@@ -23,24 +23,23 @@ export default function AuthControl() {
   };
 
   return (
-    <div className="fixed top-[calc(2rem+var(--recruitment-ticker-height,0px))] right-8 md:top-[calc(3rem+var(--recruitment-ticker-height,0px))] md:right-12 z-40 flex items-center gap-3 transition-all duration-300">
+    <div className="flex flex-col md:flex-row items-center gap-3 md:gap-4 w-full md:w-auto transition-all duration-300 mt-6 md:mt-0">
       {recruitmentConfig.isOpen && (
         <Link 
           href={recruitmentConfig.informationPath}
           onClick={handleApplyClick}
-          className={`bg-ep-accent text-ep-bg border border-ep-accent px-4 md:px-6 py-3 font-mono text-[10px] tracking-widest uppercase interactive-active focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-board-active ${!isScrolled ? 'opacity-0 motion-safe:animate-reveal-down motion-safe:[animation-delay:150ms] motion-reduce:opacity-100' : ''}`}
+          className={`w-full md:w-auto text-center bg-board-active text-text-on-active border border-board-active px-6 py-3 font-mono text-xs md:text-[10px] tracking-widest uppercase transition-colors hover:bg-board-light hover:text-text-on-light hover:border-[rgba(0,0,0,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-board-active ${!isScrolled ? 'opacity-0 motion-safe:animate-reveal-down motion-safe:[animation-delay:150ms] motion-reduce:opacity-100' : ''}`}
         >
-          <span className="hidden md:inline">APPLY TO THE FORUM</span>
-          <span className="md:hidden">APPLY</span>
+          <span>APPLY TO THE FORUM</span>
         </Link>
       )}
 
       {/* Auth Controls Wrapper */}
       <div 
-        className={`flex items-center overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`flex items-center w-full md:w-auto overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           isScrolled 
-            ? 'max-w-0 opacity-0 -translate-y-1 pointer-events-none' 
-            : 'max-w-[400px] opacity-100 translate-y-0 gap-2 shadow-sm'
+            ? 'max-h-0 md:max-w-0 opacity-0 md:-translate-y-1 pointer-events-none' 
+            : 'max-h-[200px] md:max-w-[400px] opacity-100 translate-y-0 gap-3 md:gap-2 shadow-sm'
         }`}
         aria-hidden={isScrolled}
       >
@@ -49,16 +48,16 @@ export default function AuthControl() {
             <button 
               onClick={() => openModal('login')}
               tabIndex={isScrolled ? -1 : 0}
-              className={`px-6 py-3 font-mono text-[10px] tracking-widest uppercase chess-cell-dark interactive-invert whitespace-nowrap ${!isScrolled ? 'opacity-0 motion-safe:animate-reveal-down motion-safe:[animation-delay:300ms] motion-reduce:opacity-100' : ''}`}
+              className={`flex-1 md:flex-none px-6 py-3 font-mono text-[10px] tracking-widest uppercase bg-board-dark text-text-on-dark transition-colors hover:bg-board-active hover:text-text-on-active whitespace-nowrap ${!isScrolled ? 'opacity-0 motion-safe:animate-reveal-down motion-safe:[animation-delay:300ms] motion-reduce:opacity-100' : ''}`}
             >
-              <span className="cell-text-primary">LOG IN</span>
+              <span>LOG IN</span>
             </button>
             <button 
               onClick={() => openModal('signup')}
               tabIndex={isScrolled ? -1 : 0}
-              className={`px-6 py-3 font-mono text-[10px] tracking-widest uppercase chess-cell-light interactive-invert whitespace-nowrap ${!isScrolled ? 'opacity-0 motion-safe:animate-reveal-down motion-safe:[animation-delay:450ms] motion-reduce:opacity-100' : ''}`}
+              className={`flex-1 md:flex-none px-6 py-3 font-mono text-[10px] tracking-widest uppercase bg-board-light text-text-on-light border border-border-primary transition-colors hover:bg-board-active hover:text-text-on-active hover:border-board-active whitespace-nowrap ${!isScrolled ? 'opacity-0 motion-safe:animate-reveal-down motion-safe:[animation-delay:450ms] motion-reduce:opacity-100' : ''}`}
             >
-              <span className="cell-text-primary">SIGN UP</span>
+              <span>SIGN UP</span>
             </button>
           </>
         ) : (
@@ -66,29 +65,29 @@ export default function AuthControl() {
             <button 
               onClick={() => setMenuOpen(!menuOpen)}
               tabIndex={isScrolled ? -1 : 0}
-              className="bg-ep-bg border border-ep-border pl-2 pr-4 py-2 flex items-center gap-3 hover:border-ep-gray transition-colors w-full"
+              className="bg-surface-primary border border-border-primary pl-2 pr-4 py-2 flex items-center gap-3 hover:border-border-primary transition-colors w-full"
             >
-              <div className="w-6 h-6 bg-ep-white text-ep-black flex items-center justify-center font-mono text-[10px] font-bold shrink-0">
+              <div className="w-6 h-6 bg-surface-inverse text-text-primary flex items-center justify-center font-mono text-[10px] font-bold shrink-0">
                 {user.name.charAt(0).toUpperCase()}
               </div>
               <span className="font-mono text-[10px] uppercase tracking-widest">{user.username}</span>
             </button>
             
             {menuOpen && !isScrolled && (
-              <div className="absolute right-0 mt-2 w-48 bg-ep-bg border border-ep-border shadow-xl overflow-hidden py-2">
-                <button className="w-full text-left px-4 py-2 font-mono text-[10px] uppercase tracking-widest hover:bg-ep-bg-alt transition-colors">
+              <div className="absolute right-0 mt-2 w-48 bg-surface-primary border border-border-primary shadow-xl overflow-hidden py-2">
+                <button className="w-full text-left px-4 py-2 font-mono text-[10px] uppercase tracking-widest hover:bg-surface-primary-alt transition-colors">
                   Profile
                 </button>
-                <button className="w-full text-left px-4 py-2 font-mono text-[10px] uppercase tracking-widest hover:bg-ep-bg-alt transition-colors">
+                <button className="w-full text-left px-4 py-2 font-mono text-[10px] uppercase tracking-widest hover:bg-surface-primary-alt transition-colors">
                   Settings
                 </button>
-                <div className="h-px bg-ep-border my-1"></div>
+                <div className="h-px bg-border-primary my-1"></div>
                 <button 
                   onClick={() => {
                     logout();
                     setMenuOpen(false);
                   }}
-                  className="w-full text-left px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-ep-white hover:bg-ep-bg-alt transition-colors"
+                  className="w-full text-left px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-text-inverse hover:bg-surface-primary-alt transition-colors"
                 >
                   Log Out
                 </button>

@@ -28,17 +28,17 @@ export default function AuthModals() {
   if (!modalState) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ep-bg/80 backdrop-blur-md transition-opacity" onClick={closeModal}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface-primary/80 backdrop-blur-md transition-opacity" onClick={closeModal}>
       <div 
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
-        className="bg-ep-bg border border-ep-border shadow-2xl w-full max-w-md p-6 md:p-10 relative max-h-[90vh] overflow-y-auto"
+        className="bg-surface-primary border border-border-primary shadow-2xl w-full max-w-md p-6 md:p-10 relative max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <button 
           onClick={closeModal}
-          className="absolute top-6 right-6 text-ep-gray hover:text-ep-white transition-colors font-mono text-xs uppercase tracking-widest"
+          className="absolute top-6 right-6 text-text-secondary hover:text-text-inverse transition-colors font-mono text-xs uppercase tracking-widest"
         >
           [ CLOSE ]
         </button>
@@ -71,8 +71,8 @@ function LoginForm() {
   return (
     <div className="flex flex-col gap-8 mt-4">
       <div>
-        <h2 id="modal-title" className="text-3xl font-mono uppercase tracking-tight text-ep-black mb-2">Log In</h2>
-        <p className="text-ep-gray font-mono text-xs tracking-widest uppercase">Enter the arena.</p>
+        <h2 id="modal-title" className="text-3xl font-mono uppercase tracking-tight text-text-primary mb-2">Log In</h2>
+        <p className="text-text-secondary font-mono text-xs tracking-widest uppercase">Enter the arena.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -85,9 +85,9 @@ function LoginForm() {
             placeholder="USERNAME OR EMAIL" 
             value={formData.identifier}
             onChange={(e) => setFormData({...formData, identifier: e.target.value})}
-            className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.identifier ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
+            className={`w-full px-4 py-3 bg-surface-primary border-b ${errors.identifier ? 'border-board-active text-text-inverse' : 'border-border-primary text-text-secondary'} focus:border-board-active focus:text-text-inverse focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
           />
-          {errors.identifier && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.identifier}</p>}
+          {errors.identifier && <p className="text-board-active font-mono text-[10px] uppercase tracking-widest mt-2">{errors.identifier}</p>}
         </div>
         
         <div>
@@ -98,25 +98,25 @@ function LoginForm() {
             placeholder="PASSWORD" 
             value={formData.password}
             onChange={(e) => setFormData({...formData, password: e.target.value})}
-            className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.password ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
+            className={`w-full px-4 py-3 bg-surface-primary border-b ${errors.password ? 'border-board-active text-text-inverse' : 'border-border-primary text-text-secondary'} focus:border-board-active focus:text-text-inverse focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
           />
-          {errors.password && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.password}</p>}
+          {errors.password && <p className="text-board-active font-mono text-[10px] uppercase tracking-widest mt-2">{errors.password}</p>}
         </div>
 
         <div className="flex justify-end items-center">
-          <button type="button" disabled className="text-ep-gray/50 cursor-not-allowed font-mono text-[10px] uppercase tracking-widest transition-colors">FORGOT PASSWORD? (UNAVAILABLE)</button>
+          <button type="button" disabled className="text-text-secondary/50 cursor-not-allowed font-mono text-[10px] uppercase tracking-widest transition-colors">FORGOT PASSWORD? (UNAVAILABLE)</button>
         </div>
 
-        <button type="submit" className="w-full bg-ep-white text-ep-black py-4 font-mono text-xs uppercase tracking-widest hover:bg-ep-black hover:text-ep-white border border-ep-white transition-all mt-4">
+        <button type="submit" className="w-full bg-board-light text-text-on-light py-4 font-mono text-xs uppercase tracking-widest hover:bg-board-active hover:text-text-on-active border border-[rgba(0,0,0,0.1)] transition-all mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-board-active">
           LOG IN
         </button>
       </form>
       
       <RecruitmentCallout />
 
-      <div className="text-center mt-4 border-t border-ep-border pt-6">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-ep-gray">
-          Don&apos;t have an account? <button onClick={() => openModal('signup')} className="text-ep-white hover:text-ep-gray underline transition-colors ml-2">SIGN UP</button>
+      <div className="text-center mt-4 border-t border-border-primary pt-6">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-text-secondary">
+          Don&apos;t have an account? <button onClick={() => openModal('signup')} className="text-text-inverse hover:text-text-secondary underline transition-colors ml-2">SIGN UP</button>
         </p>
       </div>
     </div>
@@ -158,15 +158,15 @@ function SignupForm() {
   return (
     <div className="flex flex-col gap-8 mt-4">
       <div>
-        <h2 id="modal-title" className="text-3xl font-mono uppercase tracking-tight text-ep-black mb-2">Sign Up</h2>
-        <p className="text-ep-gray font-mono text-xs tracking-widest uppercase">Join the official forum.</p>
+        <h2 id="modal-title" className="text-3xl font-mono uppercase tracking-tight text-text-primary mb-2">Sign Up</h2>
+        <p className="text-text-secondary font-mono text-xs tracking-widest uppercase">Join the official forum.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="signup-fullname" className="sr-only">Full Name</label>
-            <input 
+              <input 
               id="signup-fullname"
               name="fullName"
               type="text"
@@ -174,9 +174,9 @@ function SignupForm() {
               placeholder="FULL NAME" 
               value={formData.fullName}
               onChange={handleChange}
-              className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.fullName ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
+              className={`w-full px-4 py-3 bg-surface-primary border-b ${errors.fullName ? 'border-board-active text-text-inverse' : 'border-border-primary text-text-secondary'} focus:border-board-active focus:text-text-inverse focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
             />
-            {errors.fullName && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.fullName}</p>}
+            {errors.fullName && <p className="text-board-active font-mono text-[10px] uppercase tracking-widest mt-2">{errors.fullName}</p>}
           </div>
           <div>
             <label htmlFor="signup-username" className="sr-only">Username</label>
@@ -187,9 +187,9 @@ function SignupForm() {
               placeholder="USERNAME" 
               value={formData.username}
               onChange={handleChange}
-              className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.username ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
+              className={`w-full px-4 py-3 bg-surface-primary border-b ${errors.username ? 'border-board-active text-text-inverse' : 'border-border-primary text-text-secondary'} focus:border-board-active focus:text-text-inverse focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
             />
-            {errors.username && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.username}</p>}
+            {errors.username && <p className="text-board-active font-mono text-[10px] uppercase tracking-widest mt-2">{errors.username}</p>}
           </div>
         </div>
 
@@ -202,9 +202,9 @@ function SignupForm() {
             placeholder="EMAIL ADDRESS" 
             value={formData.email}
             onChange={handleChange}
-            className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.email ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
+            className={`w-full px-4 py-3 bg-surface-primary border-b ${errors.email ? 'border-board-active text-text-inverse' : 'border-border-primary text-text-secondary'} focus:border-board-active focus:text-text-inverse focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
           />
-          {errors.email && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.email}</p>}
+          {errors.email && <p className="text-board-active font-mono text-[10px] uppercase tracking-widest mt-2">{errors.email}</p>}
         </div>
 
         <div>
@@ -216,9 +216,9 @@ function SignupForm() {
             placeholder="BIRTHDATE" 
             value={formData.birthdate}
             onChange={handleChange}
-            className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.birthdate ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase ${!formData.birthdate ? 'text-ep-gray/50' : ''}`}
+            className={`w-full px-4 py-3 bg-surface-primary border-b ${errors.birthdate ? 'border-board-active text-text-inverse' : 'border-border-primary text-text-secondary'} focus:border-board-active focus:text-text-inverse focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase ${!formData.birthdate ? 'text-text-secondary/50' : ''}`}
           />
-          {errors.birthdate && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.birthdate}</p>}
+          {errors.birthdate && <p className="text-board-active font-mono text-[10px] uppercase tracking-widest mt-2">{errors.birthdate}</p>}
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -231,9 +231,9 @@ function SignupForm() {
               placeholder="PASSWORD" 
               value={formData.password}
               onChange={handleChange}
-              className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.password ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
+              className={`w-full px-4 py-3 bg-surface-primary border-b ${errors.password ? 'border-board-active text-text-inverse' : 'border-border-primary text-text-secondary'} focus:border-board-active focus:text-text-inverse focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
             />
-            {errors.password && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2 leading-tight">{errors.password}</p>}
+            {errors.password && <p className="text-board-active font-mono text-[10px] uppercase tracking-widest mt-2 leading-tight">{errors.password}</p>}
           </div>
           <div>
             <label htmlFor="signup-confirm-password" className="sr-only">Confirm Password</label>
@@ -244,9 +244,9 @@ function SignupForm() {
               placeholder="CONFIRM PASSWORD" 
               value={formData.confirmPassword}
               onChange={handleChange}
-              className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.confirmPassword ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
+              className={`w-full px-4 py-3 bg-surface-primary border-b ${errors.confirmPassword ? 'border-board-active text-text-inverse' : 'border-border-primary text-text-secondary'} focus:border-board-active focus:text-text-inverse focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
             />
-            {errors.confirmPassword && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2 leading-tight">{errors.confirmPassword}</p>}
+            {errors.confirmPassword && <p className="text-board-active font-mono text-[10px] uppercase tracking-widest mt-2 leading-tight">{errors.confirmPassword}</p>}
           </div>
         </div>
 
@@ -259,22 +259,22 @@ function SignupForm() {
             placeholder="CHESS.COM USERNAME" 
             value={formData.chessUsername}
             onChange={handleChange}
-            className={`w-full px-4 py-3 bg-ep-bg border-b ${errors.chessUsername ? 'border-ep-white text-ep-white' : 'border-ep-border text-ep-gray'} focus:border-ep-white focus:text-ep-white focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
+            className={`w-full px-4 py-3 bg-surface-primary border-b ${errors.chessUsername ? 'border-board-active text-text-inverse' : 'border-border-primary text-text-secondary'} focus:border-board-active focus:text-text-inverse focus:outline-none transition-colors font-mono text-xs tracking-widest uppercase`}
           />
-          {errors.chessUsername && <p className="text-ep-white font-mono text-[10px] uppercase tracking-widest mt-2">{errors.chessUsername}</p>}
-          {!errors.chessUsername && <p className="text-ep-gray font-mono text-[9px] uppercase tracking-widest mt-2">USED FOR COMMUNITY STATS.</p>}
+          {errors.chessUsername && <p className="text-board-active font-mono text-[10px] uppercase tracking-widest mt-2">{errors.chessUsername}</p>}
+          {!errors.chessUsername && <p className="text-text-secondary font-mono text-[9px] uppercase tracking-widest mt-2">USED FOR COMMUNITY STATS.</p>}
         </div>
 
-        <button type="submit" className="w-full bg-ep-white text-ep-black py-4 font-mono text-xs uppercase tracking-widest hover:bg-ep-black hover:text-ep-white border border-ep-white transition-all mt-4">
+        <button type="submit" className="w-full bg-board-light text-text-on-light py-4 font-mono text-xs uppercase tracking-widest hover:bg-board-active hover:text-text-on-active border border-[rgba(0,0,0,0.1)] transition-all mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-board-active">
           CREATE ACCOUNT
         </button>
       </form>
 
       <RecruitmentCallout />
 
-      <div className="text-center mt-2 border-t border-ep-border pt-6">
-        <p className="font-mono text-[10px] uppercase tracking-widest text-ep-gray">
-          Already have an account? <button onClick={() => openModal('login')} className="text-ep-white hover:text-ep-gray underline transition-colors ml-2">LOG IN</button>
+      <div className="text-center mt-2 border-t border-border-primary pt-6">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-text-secondary">
+          Already have an account? <button onClick={() => openModal('login')} className="text-text-inverse hover:text-text-secondary underline transition-colors ml-2">LOG IN</button>
         </p>
       </div>
     </div>
@@ -300,17 +300,17 @@ function RecruitmentCallout() {
   };
 
   return (
-    <div className="mt-6 border border-ep-accent/20 bg-ep-accent/5 p-4 flex flex-col gap-2">
-      <p className="font-mono text-[10px] tracking-widest uppercase text-ep-accent">
+    <div className="mt-6 border border-border-inverse/20 bg-board-light/5 p-4 flex flex-col gap-2">
+      <p className="font-mono text-[10px] tracking-widest uppercase text-text-on-light">
         FORUM RECRUITMENT IS OPEN
       </p>
-      <p className="font-mono text-xs text-ep-gray leading-relaxed">
+      <p className="font-mono text-xs text-text-secondary leading-relaxed">
         Want to help organize tournaments, events, and chess culture at ABESEC?
       </p>
       <Link 
         href={recruitmentConfig.informationPath}
         onClick={handleApplyClick}
-        className="mt-2 font-mono text-[10px] tracking-widest uppercase text-ep-white hover:text-ep-accent transition-colors flex items-center group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ep-white focus-visible:ring-offset-4 focus-visible:ring-offset-ep-bg w-fit"
+        className="mt-2 font-mono text-[10px] tracking-widest uppercase text-text-inverse hover:text-board-active transition-colors flex items-center group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-board-active focus-visible:ring-offset-4 focus-visible:ring-offset-surface-primary w-fit"
       >
         APPLY TO THE FORUM <span className="ml-2 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all">-&gt;</span>
       </Link>

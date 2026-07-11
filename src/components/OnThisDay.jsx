@@ -65,7 +65,7 @@ export default function OnThisDay() {
   // Avoid hydration mismatch by not rendering the dates until data is populated client-side
   if (!thisWeekLegends || !thisWeekMembers) {
     return (
-      <section className="px-6 md:px-12 lg:px-24 py-28 md:py-32 bg-ep-bg border-b border-ep-border min-h-[500px]">
+      <section className="px-6 md:px-12 lg:px-24 py-28 md:py-32 bg-surface-primary border-b border-border-primary min-h-[500px]">
         {/* Placeholder to prevent layout shift */}
       </section>
     );
@@ -79,30 +79,30 @@ export default function OnThisDay() {
   const padDay = (d) => String(d).padStart(2, '0');
 
   return (
-    <section className="px-6 md:px-12 lg:px-24 py-24 md:py-32 bg-ep-bg border-b border-ep-border relative overflow-hidden">
+    <section className="px-6 md:px-12 lg:px-24 py-24 md:py-32 bg-surface-primary border-b border-border-primary relative overflow-hidden">
       <div className="max-w-6xl mx-auto relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-8">
         
-        <div className="lg:col-span-4 flex flex-col justify-between lg:border-r lg:border-b-0 border-b border-ep-border pb-8 lg:pb-0 lg:pr-8">
+        <div className="lg:col-span-4 flex flex-col justify-between lg:border-r lg:border-b-0 border-b border-border-primary pb-8 lg:pb-0 lg:pr-8">
           <div>
-            <span className="font-mono text-xs text-ep-gray tracking-[0.2em] uppercase mb-4 block">
+            <span className="font-mono text-xs text-text-secondary tracking-[0.2em] uppercase mb-4 block">
               [ CALENDAR ]
             </span>
-            <h2 className="text-4xl md:text-5xl font-mono text-ep-black uppercase tracking-tight leading-tight">Birthdays &<br/>Anniversaries</h2>
+            <h2 className="text-4xl md:text-5xl font-mono text-text-primary uppercase tracking-tight leading-tight">Birthdays &<br/>Anniversaries</h2>
           </div>
         </div>
         
-        <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-px bg-ep-border border border-ep-border">
+        <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-px bg-border-primary border border-border-primary">
           
           {/* Legends Column */}
-          <div className="bg-ep-bg flex flex-col group relative">
-            <h3 className="font-mono text-xs tracking-widest text-ep-gray uppercase p-6 border-b border-ep-border">
+          <div className="bg-surface-primary flex flex-col group relative">
+            <h3 className="font-mono text-xs tracking-widest text-text-secondary uppercase p-6 border-b border-border-primary">
               {'// Chess Legends'}
             </h3>
             
-            <div className="flex-1 flex flex-col gap-px bg-ep-border">
+            <div className="flex-1 flex flex-col gap-px bg-border-primary">
             {thisWeekLegends.length === 0 ? (
-               <div className="p-6 h-full flex items-center justify-center bg-ep-bg">
-                 <p className="font-mono text-xs text-ep-gray uppercase tracking-widest text-center">NO DATA // CHECK BACK SOON</p>
+               <div className="p-6 h-full flex items-center justify-center bg-surface-primary">
+                 <p className="font-mono text-xs text-text-secondary uppercase tracking-widest text-center">NO DATA // CHECK BACK SOON</p>
                </div>
             ) : (
               thisWeekLegends.map((legend, i) => (
@@ -112,7 +112,7 @@ export default function OnThisDay() {
                   </div>
                   <div>
                     <p className="font-mono text-lg uppercase tracking-wider mb-2 cell-text-primary">
-                      {legend.isNextUp && <span className="font-mono text-[10px] uppercase tracking-widest bg-ep-gray text-ep-bg px-2 py-0.5 mr-3 align-text-top">Next up</span>}
+                      {legend.isNextUp && <span className="font-mono text-[10px] uppercase tracking-widest bg-surface-secondary text-text-on-dark px-2 py-0.5 mr-3 align-text-top">Next up</span>}
                       {legend.name}
                     </p>
                     <p className="font-mono text-xs uppercase tracking-widest mb-4 cell-text-secondary">role: {legend.role}</p>
@@ -127,16 +127,16 @@ export default function OnThisDay() {
           </div>
 
           {/* Forum Members Column */}
-          <div className="bg-ep-bg flex flex-col group relative">
-            <h3 className="font-mono text-xs tracking-widest text-ep-gray uppercase p-6 border-b border-ep-border">
+          <div className="bg-surface-primary flex flex-col group relative">
+            <h3 className="font-mono text-xs tracking-widest text-text-secondary uppercase p-6 border-b border-border-primary">
               {'// Forum Members'}
             </h3>
             {thisWeekMembers.length === 0 ? (
-              <div className="flex-1 p-6 flex items-center justify-center bg-ep-bg">
-                <p className="font-mono text-xs text-ep-gray uppercase tracking-widest text-center">NO DATA // CHECK BACK SOON</p>
+              <div className="flex-1 p-6 flex items-center justify-center bg-surface-primary">
+                <p className="font-mono text-xs text-text-secondary uppercase tracking-widest text-center">NO DATA // CHECK BACK SOON</p>
               </div>
             ) : (
-              <div className="flex-1 flex flex-col gap-px bg-ep-border">
+              <div className="flex-1 flex flex-col gap-px bg-border-primary">
               {thisWeekMembers.map((member, i) => (
                 <div key={i} className="flex items-center gap-6 p-6 relative chess-cell-dark interactive-active flex-1 group">
                   <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all cell-border border relative overflow-hidden">

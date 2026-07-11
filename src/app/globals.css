@@ -1,28 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ep-bg: #080808; /* Base background */
-  --color-ep-bg-deep: #0B0B0B; /* Deep section */
-  --color-ep-bg-raised: #101010; /* Raised surface */
-  --color-ep-bg-highlight: #161616; /* Highlighted dark surface */
-  --color-ep-accent: #EBE8E0; /* Warm light surface (PAPER) */
-  --color-ep-accent-hover: #FFFFFF;
-  --color-ep-black: #F1EFE8; /* Primary text (inverted naming for legacy compatibility) */
-  --color-ep-white: #0A0A0A; /* Dark contrast text */
-  --color-ep-gray: #A5A39C; /* Secondary text */
-  --color-ep-lightgray: rgba(241,239,232,0.12);
-  --color-ep-primary: #6F6D67; /* Muted text */
-  --color-ep-border: rgba(241,239,232,0.08); /* Borders */
+  --color-board-light: var(--board-light);
+  --color-board-dark: var(--board-dark);
+  --color-board-active: var(--board-active);
 
-  /* ENPASSANT CLASSIC BOARD THEME */
-  --color-board-light: #EBE8E0;
-  --color-board-dark: #1A1918;
-  --color-board-active: #9A2BDB;
-  --color-board-active-strong: #7A22B0;
-  --color-board-light-text: #0F0F0F;
-  --color-board-dark-text: #F1EFE8;
-  --color-board-active-text: #FFFFFF;
-  --color-board-border: rgba(235, 232, 224, 0.08);
+  --color-surface-primary: var(--surface-primary);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-surface-inverse: var(--surface-inverse);
+  
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-inverse: var(--text-inverse);
+  --color-text-on-active: var(--text-on-active);
+  --color-text-on-light: var(--text-on-light);
+  --color-text-on-dark: var(--text-on-dark);
+  
+  --color-border-primary: var(--border-primary);
+  --color-border-subtle: var(--border-subtle);
 
   --font-serif: var(--font-courier), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-mono: var(--font-courier), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -67,9 +62,32 @@
 }
 
 @layer base {
-  :root {
+  :root, [data-theme="golden-board"] {
     --recruitment-ticker-height: 0px;
+    
+    /* ENPASSANT GOLDEN BOARD THEME */
+    --board-light: #F4F1EA; /* Warm Ivory */
+    --board-dark: #8C6A43; /* Golden Ochre */
+    --board-active: #C0D62A; /* Chartreuse */
+    
+    /* SURFACES */
+    --surface-primary: var(--board-light); /* Main page canvas is CREAM */
+    --surface-secondary: var(--board-dark); /* Secondary surfaces are GOLDEN BROWN */
+    --surface-inverse: var(--board-dark);
+
+    /* TEXT */
+    --text-primary: #382A1C; /* Accessible dark brown for cream background */
+    --text-secondary: #6A5640; /* Muted dark brown */
+    --text-inverse: #F4F1EA; /* Cream text for dark surfaces */
+    --text-on-active: #2A1B0A;
+    --text-on-light: #382A1C;
+    --text-on-dark: #F4F1EA;
+
+    /* BORDERS */
+    --border-primary: rgba(56, 42, 28, 0.15); /* Dark border for light canvas */
+    --border-subtle: rgba(56, 42, 28, 0.05);
   }
+
   .recruitment-open {
     --recruitment-ticker-height: 28px;
   }
@@ -79,29 +97,25 @@
     }
   }
 
-  /* LIGHT THEME FOR RECRUITMENT PAGE (4-TONE SYSTEM) */
+  /* LIGHT THEME FOR RECRUITMENT PAGE */
   .theme-light {
-    --color-ep-bg: #EBE8E0; /* PAPER */
-    --color-ep-bg-deep: #DCD9D0; /* SHADED PAPER */
-    --color-ep-bg-raised: #F4F1EA; /* RAISED PAPER */
-    --color-ep-bg-highlight: #F0EDE4; /* Alternate PAPER */
+    --surface-primary: var(--board-light);
+    --surface-secondary: var(--board-dark);
+    --surface-inverse: var(--board-dark);
     
-    --color-ep-accent: #0F0F0F; /* INK */
-    --color-ep-accent-hover: #000000;
+    --text-primary: #382A1C;
+    --text-secondary: #6A5640; 
+    --text-inverse: #F4F1EA;
     
-    --color-ep-black: #080808; /* INK (Pure) */
-    --color-ep-white: #FAF8F2; /* Purest Light */
-    --color-ep-gray: #4A4A4A; /* Muted INK (Improved Readability) */
-    --color-ep-lightgray: rgba(15,15,15,0.12);
-    --color-ep-primary: #5A5A5A; /* Stronger Muted INK */
-    --color-ep-border: rgba(15,15,15,0.18); /* Stronger dark borders */
+    --border-primary: rgba(56, 42, 28, 0.15);
+    --border-subtle: rgba(56, 42, 28, 0.05);
   }
 
   body {
-    @apply bg-[#0A0A0A] text-[#F2F2EE] font-mono;
+    @apply bg-surface-primary text-text-primary font-mono;
     /* Custom scrollbar for terminal feel */
     scrollbar-width: thin;
-    scrollbar-color: #333 #0A0A0A;
+    scrollbar-color: var(--surface-secondary) var(--surface-primary);
   }
 
   body::-webkit-scrollbar {
@@ -109,11 +123,11 @@
   }
 
   body::-webkit-scrollbar-track {
-    background: #0A0A0A;
+    background: var(--surface-primary);
   }
 
   body::-webkit-scrollbar-thumb {
-    background-color: #333;
+    background-color: var(--surface-secondary);
     border-radius: 0;
   }
 
@@ -125,29 +139,23 @@
 @layer utilities {
   /* Base Board Cell Classes (Static Geometry) */
   .chess-cell-dark {
-    @apply bg-board-dark text-board-dark-text border border-board-border transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-board-active;
+    @apply bg-board-dark text-text-on-dark border border-[rgba(0,0,0,0.1)] transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-board-active;
   }
   .chess-cell-dark .cell-text-primary {
-    @apply text-board-dark-text transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
+    @apply text-text-on-dark transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
   }
   .chess-cell-dark .cell-text-secondary {
-    @apply text-board-dark-text opacity-70 transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
-  }
-  .chess-cell-dark .cell-border {
-    @apply border-board-border transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
+    @apply text-text-on-dark opacity-70 transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
   }
   
   .chess-cell-light {
-    @apply bg-board-light text-board-light-text border border-board-border transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-board-active;
+    @apply bg-board-light text-text-on-light border border-[rgba(0,0,0,0.1)] transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-board-active;
   }
   .chess-cell-light .cell-text-primary {
-    @apply text-board-light-text transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
+    @apply text-text-on-light transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
   }
   .chess-cell-light .cell-text-secondary {
-    @apply text-board-light-text opacity-70 transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
-  }
-  .chess-cell-light .cell-border {
-    @apply border-board-light-text/20 transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
+    @apply text-text-on-light opacity-70 transition-colors duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)];
   }
 
   /* Coordinate Marker Base */
@@ -155,15 +163,15 @@
     @apply opacity-0 transition-opacity duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] font-mono text-[10px] tracking-widest absolute bottom-4 right-4 pointer-events-none;
   }
   .chess-cell-dark .coord-marker {
-    @apply text-board-dark-text opacity-50;
+    @apply text-text-on-dark opacity-50;
   }
   .chess-cell-light .coord-marker {
-    @apply text-board-light-text opacity-50;
+    @apply text-text-on-light opacity-50;
   }
 
   /* 
    =============================================
-   ACTIVE SQUARE INTERACTION (Magenta Highlight) 
+   ACTIVE SQUARE INTERACTION (Chartreuse Highlight) 
    =============================================
   */
   .interactive-active {
@@ -171,46 +179,19 @@
   }
   .interactive-active:hover, .interactive-active:focus-visible,
   .group:hover .interactive-active.group-hover-active {
-    @apply bg-board-active text-board-active-text border-board-active-strong;
+    @apply bg-board-active text-text-on-active border-board-active;
   }
   .interactive-active:hover .cell-text-primary, .interactive-active:focus-visible .cell-text-primary,
   .group:hover .interactive-active.group-hover-active .cell-text-primary {
-    @apply text-board-active-text;
+    @apply text-text-on-active;
   }
   .interactive-active:hover .cell-text-secondary, .interactive-active:focus-visible .cell-text-secondary,
   .group:hover .interactive-active.group-hover-active .cell-text-secondary {
-    @apply text-board-active-text opacity-80;
-  }
-  .interactive-active:hover .cell-border, .interactive-active:focus-visible .cell-border,
-  .group:hover .interactive-active.group-hover-active .cell-border {
-    @apply border-board-active-text/30;
+    @apply text-text-on-active opacity-80;
   }
   .interactive-active:hover .coord-marker, .interactive-active:focus-visible .coord-marker,
   .group:hover .interactive-active.group-hover-active .coord-marker {
-    @apply opacity-100 text-board-active-text;
-  }
-
-  /* 
-   =============================================
-   MONOCHROME INVERT INTERACTION (Auth UI Controls)
-   =============================================
-  */
-  .interactive-invert.chess-cell-dark:hover, .interactive-invert.chess-cell-dark:focus-visible {
-    @apply bg-board-light text-board-light-text border-board-light;
-  }
-  .interactive-invert.chess-cell-dark:hover .cell-text-primary, .interactive-invert.chess-cell-dark:focus-visible .cell-text-primary {
-    @apply text-board-light-text;
-  }
-  .interactive-invert.chess-cell-light:hover, .interactive-invert.chess-cell-light:focus-visible {
-    @apply bg-board-dark text-board-dark-text border-board-dark;
-  }
-  .interactive-invert.chess-cell-light:hover .cell-text-primary, .interactive-invert.chess-cell-light:focus-visible .cell-text-primary {
-    @apply text-board-dark-text;
-  }
-  
-  /* THEME LIGHT SCOPED OVERRIDES (Non-board overrides only) */
-  .theme-light {
-    /* Coordinate markers for non-cells on light theme, if needed */
+    @apply opacity-100 text-text-on-active;
   }
 }
 
